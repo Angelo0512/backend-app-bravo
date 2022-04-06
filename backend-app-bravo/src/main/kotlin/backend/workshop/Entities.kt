@@ -7,6 +7,10 @@ package backend.workshop
 @Entity
 @Table (name = "VEHICLE")
 data class Vehicle(
+    /*
+    *Vehicle class contains the most specific vehicle information that is required
+    *for the workshop's logic.
+    */
     @Id //Numeric PK for faster indexing.
     @GeneratedValue(strategy = GenerationType.AUTO)
     @Column(name = "PK_ID")
