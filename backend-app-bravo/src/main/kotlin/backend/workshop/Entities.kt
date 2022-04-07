@@ -7,6 +7,8 @@
  * This file contains the required entities data classes for workshop's app server.
  */
 package backend.workshop
+import java.util.*
+import javax.persistence.*
 /*
 *Vehicle class contains the most specific vehicle information that is required
 *for the workshop's logic.
@@ -14,7 +16,7 @@ package backend.workshop
 @Entity
 @Table (name = "VEHICLES")
 data class Vehicle(
-    @Id //Numeric PK for faster indexing.
+    @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     @Column(name = "PK_ID")
     var id: Long,
@@ -39,7 +41,7 @@ data class Vehicle(
 ){
     override fun equals(other: Any?): Boolean {
         if (this === other) return true
-        if (other !is Task) return false
+        if (other !is Vehicle) return false
 
         if (id != other.id) return false
 
@@ -62,20 +64,20 @@ data class Vehicle(
 data class Client(
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
-    @Column("PK_ID")
-    var id: Long,
-    @Column("NAME")
-    var name: String? = null,
-    @Column("EMAIL")
-    var email: String? = null,
-    @Column("TELEPHONE")
-    var telephone: Int = null,
+    //@Column("PK_ID")
+    var id: Long ?,
+    //@Column("NAME")
+    var name: String,
+    //@Column("EMAIL")
+    var email: String,
+    //@Column("TELEPHONE")
+    var telephone: Int,
     /*@OneToMany(mappedBy = "CLIENTS")
     var vehiclesList: List<Vehicle>,*/
 ){
     override fun equals(other: Any?): Boolean {
         if (this === other) return true
-        if (other !is Task) return false
+        if (other !is Client) return false
 
         if (id != other.id) return false
 
@@ -87,7 +89,7 @@ data class Client(
     }
 
     override fun toString(): String {
-        return "Client(id=$id, name='$name', email='$email', ", "telephone=$telephone)"
+        return "Client(id=$id, name='$name', email='$email', telephone=$telephone)"
     }
 }
 @Entity
@@ -95,19 +97,20 @@ data class Client(
 data class Service(
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
-    @Column("PK_ID")
+    //@Column("PK_ID")
     var id: Int? = null,
-    @Column("OBSERVATIONS")
+    //@Column("OBSERVATIONS")
     var observations: String? = null,
-    @Column("STATE")
+    //@Column("STATE")
     var state: String? = null,
     @ManyToOne(optional = false)
-    @JoinColumn(fetch = FetchType.LAZY, name = "REPORT_ID")
+    //@JoinColumn(fetch = FetchType.LAZY, name = "REPORT_ID")
+    @JoinColumn(name = "REPORT_ID")
     val report: Report? = null,
 ){
     override fun equals(other: Any?): Boolean {
         if (this === other) return true
-        if (other !is Task) return false
+        if (other !is Service) return false
 
         if (id != other.id) return false
 
@@ -162,8 +165,9 @@ data class User(
     }
 
     override fun toString(): String {
-        return "User(id=$id, firstName='$firstName', lastName='$lastName', password='$password', email='$email', createDate=$createDate, enabled=$enabled, tokenExpired=$tokenExpired, taskList=$taskList, roleList=$roleList)"
+        return "User(id=$id, firstName='$firstName', lastName='$lastName', password='$password', email='$email', createDate=$createDate, enabled=$enabled, tokenExpired=$tokenExpired, roleList=$roleList)"
     }
+
     @Entity
     @Table(name = "ROLE")
     data class Role(
@@ -199,7 +203,6 @@ data class User(
 
     }
 }
-
 @Entity
 @Table(name = "PRIVILEGE")
 data class Privilege(
@@ -208,10 +211,12 @@ data class Privilege(
     var id:Long? = null,
     var name: String,
     // Entity Relationship
-    @ManyToMany(mappedBy = "ROLELIST", fetch = FetchType.LAZY)
+    //@ManyToMany(mappedBy = "ROLELIST")
+    //@ManyToMany(mappedBy = "ROLELIST", fetch = FetchType.LAZY)
     var userList: Set<User>,
-    @ManyToMany(mappedBy = "PRIVILEGELIST", fetch = FetchType.LAZY)
-    var roleList: Set<Role>,
+    //@ManyToMany(mappedBy = "PRIVILEGELIST")
+    //@ManyToMany(mappedBy = "PRIVILEGELIST", fetch = FetchType.LAZY)
+    //var roleList: Set<Role>,
 
     ) {
     override fun equals(other: Any?): Boolean {
@@ -228,7 +233,8 @@ data class Privilege(
     }
 
     override fun toString(): String {
-        return "Privilege(id=$id, name='$name', userList=$userList, roleList=$roleList)"
+        //return "Privilege(id=$id, name='$name', userList=$userList, roleList=$roleList)"
+        return "Privilege(id=$id, name='$name', userList=$userList)"
     }
 }
 /*
@@ -239,7 +245,7 @@ consulting about Service(s) current states, and other important actions that nee
 @Table(name = "REPORTS")
 data class Report(
     @Id
-    @GeneratedValue(strategy = GeneratedType.AUTO)
+    @GeneratedValue(strategy = GenerationType.AUTO)
     @Column(name = "PK_ID")
     var id:Long?=null,
     @Column(name = "genDate")
@@ -247,8 +253,10 @@ data class Report(
     var genDate:Date?=null,
     @Column(name = "description")
     var description: String? = null,
-    @OneToMany(cascade = CascadeType.ALL, fetch = FetchType.LAZY, mappedBy="report")
-    var servicesList: mutableListOf<Service>()? = null,
+    //@OneToMany(cascade = CascadeType.ALL, fetch = FetchType.LAZY, mappedBy="report")
+    @OneToMany(cascade = [(CascadeType.ALL)], mappedBy="report")
+    var servicesList: List<Service>? = null,
+
 ){
     override fun equals(other: Any?): Boolean {
         if (this === other) return true
