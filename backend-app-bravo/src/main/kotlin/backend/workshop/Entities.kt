@@ -1,16 +1,19 @@
 /**
  * @author: ArnoldG6
+ * @author: Angelo0512
+ * @author: AraR11
+ * @author: Haxiz
+ * @version 1.0
  * This file contains the required entities data classes for workshop's app server.
  */
 package backend.workshop
-
+/*
+*Vehicle class contains the most specific vehicle information that is required
+*for the workshop's logic.
+*/
 @Entity
 @Table (name = "VEHICLES")
 data class Vehicle(
-    /*
-    *Vehicle class contains the most specific vehicle information that is required
-    *for the workshop's logic.
-    */
     @Id //Numeric PK for faster indexing.
     @GeneratedValue(strategy = GenerationType.AUTO)
     @Column(name = "PK_ID")
@@ -94,10 +97,13 @@ data class Service(
     @GeneratedValue(strategy = GenerationType.AUTO)
     @Column("PK_ID")
     var id: Int? = null,
-    @Column("OBSERVATION")
-    var observation: String? = null,
+    @Column("OBSERVATIONS")
+    var observations: String? = null,
     @Column("STATE")
     var state: String? = null,
+    @ManyToOne(optional = false)
+    @JoinColumn(fetch = FetchType.LAZY, name = "REPORT_ID")
+    val report: Report? = null,
 ){
     override fun equals(other: Any?): Boolean {
         if (this === other) return true
@@ -113,7 +119,7 @@ data class Service(
     }
 
     override fun toString(): String {
-        return "Service(id=$id, observation='$observation', state='$state')"
+        return "Service(id=$id, observations='$observations', state='$state, report='$report')"
     }
 }
 @Entity
@@ -223,5 +229,39 @@ data class Privilege(
 
     override fun toString(): String {
         return "Privilege(id=$id, name='$name', userList=$userList, roleList=$roleList)"
+    }
+}
+/*
+* Report class contains information about the Client, Vehicle and Service(s) in order to relate them for future
+consulting about Service(s) current states, and other important actions that need to be done with the related classes.
+*/
+@Entity
+@Table(name = "REPORTS")
+data class Report(
+    @Id
+    @GeneratedValue(strategy = GeneratedType.AUTO)
+    @Column(name = "PK_ID")
+    var id:Long?=null,
+    @Column(name = "genDate")
+    @Temporal(TemporalType.DATE)
+    var genDate:Date?=null,
+    @Column(name = "description")
+    var description: String? = null,
+    @OneToMany(cascade = CascadeType.ALL, fetch = FetchType.LAZY, mappedBy="report")
+    var servicesList: mutableListOf<Service>()? = null,
+){
+    override fun equals(other: Any?): Boolean {
+        if (this === other) return true
+        if (other !is Report) return false
+        if (id != other.id) return false
+        return true
+    }
+
+    override fun hashCode(): Int {
+        return id?.hashCode() ?: 0
+    }
+
+    override fun toString(): String {
+        return "Report(id='$id', genDate='$genDate', description='$description', servicesList='$servicesList')"
     }
 }
