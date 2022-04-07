@@ -87,7 +87,35 @@ data class Client(
         return "Client(id=$id, name='$name', email='$email', ", "telephone=$telephone)"
     }
 }
+@Entity
+@Table(name= "SERVICES")
+data class Service(
+    @Id
+    @GeneratedValue(strategy = GenerationType.AUTO)
+    @Column("PK_ID")
+    var id: Int? = null,
+    @Column("OBSERVATION")
+    var observation: String? = null,
+    @Column("STATE")
+    var state: String? = null,
+){
+    override fun equals(other: Any?): Boolean {
+        if (this === other) return true
+        if (other !is Task) return false
 
+        if (id != other.id) return false
+
+        return true
+    }
+
+    override fun hashCode(): Int {
+        return id?.hashCode() ?: 0
+    }
+
+    override fun toString(): String {
+        return "Service(id=$id, observation='$observation', state='$state')"
+    }
+}
 @Entity
 @Table(name = "USERS")
 data class User(
