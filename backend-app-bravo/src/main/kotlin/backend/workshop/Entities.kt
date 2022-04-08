@@ -231,14 +231,14 @@ data class Report(
     @OneToMany(cascade = [(CascadeType.ALL)], fetch = FetchType.LAZY)
     @JoinColumn(referencedColumnName = "id")
     var servicesList: List<Service>,
-    @OneToOne(cascade = [(CascadeType.ALL)], optional = false)
-    @JoinColumn(referencedColumnName = "id")
+    @ManyToOne
+    @JoinColumn(name = "id", referencedColumnName = "id", nullable = false)
     var client: Client,
-    @OneToOne(cascade = [(CascadeType.ALL)], optional = false)
-    @JoinColumn(referencedColumnName = "id")
+    @ManyToOne
+    @JoinColumn(name = "id", referencedColumnName = "id", nullable = false)
     var vehicle: Vehicle,
-    @OneToOne(cascade = [(CascadeType.ALL)], optional = false)
-    @JoinColumn(referencedColumnName = "id")
+    @ManyToOne
+    @JoinColumn(name = "id", referencedColumnName = "id", nullable = false)
     var technician: Technician,
     ) {
     override fun equals(other: Any?): Boolean {
