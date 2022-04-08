@@ -7,6 +7,10 @@
  * This file contains the required entities' data classes for workshop's app server.
  */
 
+// TODO : cambiar nombre de las tablas a minuscula
+// TODO : agregar @Column
+// TODO : link para tabla extension tabla usuario
+
 package backend.workshop
 
 import java.util.*
@@ -17,14 +21,20 @@ import javax.persistence.*
 *for the workshop's logic.
 */
 @Entity
+@Table(name = "vehicle")
 data class Vehicle(
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     var id: Long?,
+    @Column(name = "plate_number")
     var plateNumber: String,
+    @Column(name = "vin_number")
     var vinNumber: String,
+    @Column(name = "motor_type")
     var motorType: String,
+    @Column(name = "vehicle_class")
     var vehicleClass: String,
+    @Column(name = "motor_serial")
     var motorSerial: String,
     var brand: String,
 ) {
@@ -49,6 +59,7 @@ data class Vehicle(
 }
 
 @Entity
+@Table(name = "client")
 data class Client(
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
@@ -83,6 +94,7 @@ enum class Status {
 }
 
 @Entity
+@Table(name = "service")
 data class Service(
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
@@ -109,16 +121,21 @@ data class Service(
 }
 
 @Entity
+@Table(name = "users")
 data class User(
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     var id: Long? = null,
+    @Column(name = "first_name")
     var firstName: String,
+    @Column(name = "last_name")
     var lastName: String,
     var password: String,
     var email: String,
+    @Column(name = "create_date")
     var createDate: Date,
     var enabled: Boolean?,
+    @Column(name = "token_expired")
     var tokenExpired: Boolean?,
     // Entity Relationship
     @ManyToMany
@@ -152,6 +169,7 @@ data class User(
 }
 
 @Entity
+@Table(name = "role")
 data class Role(
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
@@ -186,15 +204,16 @@ data class Role(
 }
 
 @Entity
+@Table(name = "privilege")
 data class Privilege(
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     var id: Long? = null,
     var name: String,
     // Entity Relationship
-    @ManyToMany(mappedBy = "ROLELIST", fetch = FetchType.LAZY)
+    @ManyToMany(mappedBy = "roleList", fetch = FetchType.LAZY)
     var userList: Set<User>,
-    @ManyToMany(mappedBy = "PRIVILEGELIST", fetch = FetchType.LAZY)
+    @ManyToMany(mappedBy = "privilegeList", fetch = FetchType.LAZY)
     var roleList: Set<Role>,
 
 ) {
@@ -221,24 +240,26 @@ data class Privilege(
 consulting about Service(s) current states, and other important actions that need to be done with the related classes.
 */
 @Entity
+@Table(name = "report")
 data class Report(
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     var id: Long?,
     @Temporal(TemporalType.DATE)
+    @Column(name = "creation_date")
     var creationDate: Date,
     var description: String,
     @OneToMany(cascade = [(CascadeType.ALL)], fetch = FetchType.LAZY)
     @JoinColumn(referencedColumnName = "id")
     var servicesList: List<Service>,
     @ManyToOne
-    @JoinColumn(name = "id", referencedColumnName = "id", nullable = false)
+    @JoinColumn(referencedColumnName = "id", nullable = false)
     var client: Client,
     @ManyToOne
-    @JoinColumn(name = "id", referencedColumnName = "id", nullable = false)
+    @JoinColumn(referencedColumnName = "id", nullable = false)
     var vehicle: Vehicle,
     @ManyToOne
-    @JoinColumn(name = "id", referencedColumnName = "id", nullable = false)
+    @JoinColumn(referencedColumnName = "id", nullable = false)
     var technician: Technician,
     ) {
     override fun equals(other: Any?): Boolean {
@@ -259,6 +280,7 @@ data class Report(
 }
 
 @Entity
+@Table(name = "technician")
 class Technician (
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
@@ -266,7 +288,6 @@ class Technician (
     @OneToOne(fetch = FetchType.LAZY)
     @JoinColumn(referencedColumnName = "id")
     var user: User,
-    private var password: String,
 ) {
     override fun equals(other: Any?): Boolean {
         if (this === other) return true
@@ -280,6 +301,6 @@ class Technician (
     }
 
     override fun toString(): String {
-        return "Technician(id=$id, user=$user, password='$password')"
+        return "Technician(id=$id, user=$user)"
     }
 }
