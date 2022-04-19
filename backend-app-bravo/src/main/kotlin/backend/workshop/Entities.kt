@@ -37,6 +37,9 @@ data class Vehicle(
     @Column(name = "motor_serial")
     var motorSerial: String,
     var brand: String,
+    @ManyToOne
+    @JoinColumn(referencedColumnName = "id", nullable = false)
+    var client: Client,
 ) {
     override fun equals(other: Any?): Boolean {
         if (this === other) return true
@@ -54,7 +57,7 @@ data class Vehicle(
     override fun toString(): String {
         return "Vehicle(id=$id, plate Number='$plateNumber', vin number='$vinNumber', " +
                 "motor type='$motorType', vehicle class='$vehicleClass', motor serial='$motorSerial'," +
-                " brand='$brand')"
+                " brand='$brand', client id='$client')"
     }
 }
 
@@ -67,9 +70,6 @@ data class Client(
     var name: String,
     var email: String,
     var telephone: Int,
-    @OneToMany
-    @JoinColumn(referencedColumnName = "id")
-    var vehiclesList: List<Vehicle>,
 ) {
     override fun equals(other: Any?): Boolean {
         if (this === other) return true
@@ -85,7 +85,7 @@ data class Client(
     }
 
     override fun toString(): String {
-        return "Client(id=$id, name='$name', email='$email', telephone=$telephone, vehiclesList=$vehiclesList)"
+        return "Client(id=$id, name='$name', email='$email', telephone=$telephone)"
     }
 }
 
@@ -249,8 +249,12 @@ data class Report(
     @Column(name = "creation_date")
     var creationDate: Date,
     var description: String,
-    @OneToMany(cascade = [(CascadeType.ALL)], fetch = FetchType.LAZY)
-    @JoinColumn(referencedColumnName = "id")
+    @ManyToMany
+    @JoinTable(
+        name = "report_services",
+        joinColumns = [JoinColumn(name = "report_id", referencedColumnName = "id")],
+        inverseJoinColumns = [JoinColumn(name = "service_id", referencedColumnName = "id")]
+    )
     var servicesList: List<Service>,
     @ManyToOne
     @JoinColumn(referencedColumnName = "id", nullable = false)
