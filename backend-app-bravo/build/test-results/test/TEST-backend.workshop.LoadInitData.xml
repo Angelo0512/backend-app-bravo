@@ -1,0 +1,88 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<testsuite name="backend.workshop.LoadInitData" tests="1" skipped="0" failures="0" errors="0" timestamp="2022-04-19T04:40:31" hostname="DESKTOP-V2DU6JQ" time="0.667">
+  <properties/>
+  <testcase name="testTaskFindAll()" classname="backend.workshop.LoadInitData" time="0.667"/>
+  <system-out><![CDATA[22:40:25.609 [Test worker] DEBUG org.springframework.test.context.BootstrapUtils - Instantiating CacheAwareContextLoaderDelegate from class [org.springframework.test.context.cache.DefaultCacheAwareContextLoaderDelegate]
+22:40:25.623 [Test worker] DEBUG org.springframework.test.context.BootstrapUtils - Instantiating BootstrapContext using constructor [public org.springframework.test.context.support.DefaultBootstrapContext(java.lang.Class,org.springframework.test.context.CacheAwareContextLoaderDelegate)]
+22:40:25.666 [Test worker] DEBUG org.springframework.test.context.BootstrapUtils - Instantiating TestContextBootstrapper for test class [backend.workshop.LoadInitData] from class [org.springframework.boot.test.context.SpringBootTestContextBootstrapper]
+22:40:25.680 [Test worker] INFO org.springframework.boot.test.context.SpringBootTestContextBootstrapper - Neither @ContextConfiguration nor @ContextHierarchy found for test class [backend.workshop.LoadInitData], using SpringBootContextLoader
+22:40:25.685 [Test worker] DEBUG org.springframework.test.context.support.AbstractContextLoader - Did not detect default resource location for test class [backend.workshop.LoadInitData]: class path resource [backend/workshop/LoadInitData-context.xml] does not exist
+22:40:25.685 [Test worker] DEBUG org.springframework.test.context.support.AbstractContextLoader - Did not detect default resource location for test class [backend.workshop.LoadInitData]: class path resource [backend/workshop/LoadInitDataContext.groovy] does not exist
+22:40:25.686 [Test worker] INFO org.springframework.test.context.support.AbstractContextLoader - Could not detect default resource locations for test class [backend.workshop.LoadInitData]: no resource found for suffixes {-context.xml, Context.groovy}.
+22:40:25.686 [Test worker] INFO org.springframework.test.context.support.AnnotationConfigContextLoaderUtils - Could not detect default configuration classes for test class [backend.workshop.LoadInitData]: LoadInitData does not declare any static, non-private, non-final, nested classes annotated with @Configuration.
+22:40:25.736 [Test worker] DEBUG org.springframework.test.context.support.ActiveProfilesUtils - Could not find an 'annotation declaring class' for annotation type [org.springframework.test.context.ActiveProfiles] and class [backend.workshop.LoadInitData]
+22:40:25.801 [Test worker] DEBUG org.springframework.context.annotation.ClassPathScanningCandidateComponentProvider - Identified candidate component class: file [C:\Users\Angelo_Calvo\Documents\GitHub\backend-app-bravo\backend-app-bravo\build\classes\kotlin\main\backend\workshop\BravoApp.class]
+22:40:25.809 [Test worker] INFO org.springframework.boot.test.context.SpringBootTestContextBootstrapper - Found @SpringBootConfiguration backend.workshop.BravoApp for test class backend.workshop.LoadInitData
+22:40:25.922 [Test worker] DEBUG org.springframework.boot.test.context.SpringBootTestContextBootstrapper - @TestExecutionListeners is not present for class [backend.workshop.LoadInitData]: using defaults.
+22:40:25.922 [Test worker] INFO org.springframework.boot.test.context.SpringBootTestContextBootstrapper - Loaded default TestExecutionListener class names from location [META-INF/spring.factories]: [org.springframework.boot.test.autoconfigure.restdocs.RestDocsTestExecutionListener, org.springframework.boot.test.autoconfigure.web.client.MockRestServiceServerResetTestExecutionListener, org.springframework.boot.test.autoconfigure.web.servlet.MockMvcPrintOnlyOnFailureTestExecutionListener, org.springframework.boot.test.autoconfigure.web.servlet.WebDriverTestExecutionListener, org.springframework.boot.test.autoconfigure.webservices.client.MockWebServiceServerTestExecutionListener, org.springframework.boot.test.mock.mockito.MockitoTestExecutionListener, org.springframework.boot.test.mock.mockito.ResetMocksTestExecutionListener, org.springframework.test.context.web.ServletTestExecutionListener, org.springframework.test.context.support.DirtiesContextBeforeModesTestExecutionListener, org.springframework.test.context.event.ApplicationEventsTestExecutionListener, org.springframework.test.context.support.DependencyInjectionTestExecutionListener, org.springframework.test.context.support.DirtiesContextTestExecutionListener, org.springframework.test.context.transaction.TransactionalTestExecutionListener, org.springframework.test.context.jdbc.SqlScriptsTestExecutionListener, org.springframework.test.context.event.EventPublishingTestExecutionListener]
+22:40:25.939 [Test worker] INFO org.springframework.boot.test.context.SpringBootTestContextBootstrapper - Using TestExecutionListeners: [org.springframework.test.context.web.ServletTestExecutionListener@1ec9c8e9, org.springframework.test.context.support.DirtiesContextBeforeModesTestExecutionListener@76a4901b, org.springframework.test.context.event.ApplicationEventsTestExecutionListener@77ff76cd, org.springframework.boot.test.mock.mockito.MockitoTestExecutionListener@5123f92f, org.springframework.boot.test.autoconfigure.SpringBootDependencyInjectionTestExecutionListener@1fdfd62, org.springframework.test.context.support.DirtiesContextTestExecutionListener@538b910e, org.springframework.test.context.transaction.TransactionalTestExecutionListener@5fceccac, org.springframework.test.context.jdbc.SqlScriptsTestExecutionListener@116aacfb, org.springframework.test.context.event.EventPublishingTestExecutionListener@7f925559, org.springframework.boot.test.autoconfigure.restdocs.RestDocsTestExecutionListener@709ea844, org.springframework.boot.test.autoconfigure.web.client.MockRestServiceServerResetTestExecutionListener@591cb157, org.springframework.boot.test.autoconfigure.web.servlet.MockMvcPrintOnlyOnFailureTestExecutionListener@1d55d3fb, org.springframework.boot.test.autoconfigure.web.servlet.WebDriverTestExecutionListener@70006595, org.springframework.boot.test.autoconfigure.webservices.client.MockWebServiceServerTestExecutionListener@75d92f59, org.springframework.boot.test.mock.mockito.ResetMocksTestExecutionListener@4973aebc]
+22:40:25.944 [Test worker] DEBUG org.springframework.test.context.support.AbstractDirtiesContextTestExecutionListener - Before test class: context [DefaultTestContext@752d0e30 testClass = LoadInitData, testInstance = [null], testMethod = [null], testException = [null], mergedContextConfiguration = [WebMergedContextConfiguration@4b081a81 testClass = LoadInitData, locations = '{}', classes = '{class backend.workshop.BravoApp}', contextInitializerClasses = '[]', activeProfiles = '{}', propertySourceLocations = '{}', propertySourceProperties = '{org.springframework.boot.test.context.SpringBootTestContextBootstrapper=true}', contextCustomizers = set[org.springframework.boot.test.autoconfigure.actuate.metrics.MetricsExportContextCustomizerFactory$DisableMetricExportContextCustomizer@1132157e, org.springframework.boot.test.autoconfigure.properties.PropertyMappingContextCustomizer@0, org.springframework.boot.test.autoconfigure.web.servlet.WebDriverContextCustomizerFactory$Customizer@4d3365f8, org.springframework.boot.test.context.filter.ExcludeFilterContextCustomizer@621b34cc, org.springframework.boot.test.json.DuplicateJsonObjectContextCustomizerFactory$DuplicateJsonObjectContextCustomizer@70288db1, org.springframework.boot.test.mock.mockito.MockitoContextCustomizer@0, org.springframework.boot.test.web.client.TestRestTemplateContextCustomizer@b6ac54b, org.springframework.boot.test.context.SpringBootTestArgs@1, org.springframework.boot.test.context.SpringBootTestWebEnvironment@62dba0a8], resourceBasePath = 'src/main/webapp', contextLoader = 'org.springframework.boot.test.context.SpringBootContextLoader', parent = [null]], attributes = map['org.springframework.test.context.web.ServletTestExecutionListener.activateListener' -> true]], class annotated with @DirtiesContext [false] with mode [null].
+
+  .   ____          _            __ _ _
+ /\\ / ___'_ __ _ _(_)_ __  __ _ \ \ \ \
+( ( )\___ | '_ | '_| | '_ \/ _` | \ \ \ \
+ \\/  ___)| |_)| | | | | || (_| |  ) ) ) )
+  '  |____| .__|_| |_|_| |_\__, | / / / /
+ =========|_|==============|___/=/_/_/_/
+ :: Spring Boot ::                (v2.6.5)
+
+2022-04-18 22:40:26.312  INFO 7944 --- [    Test worker] backend.workshop.LoadInitData            : Starting LoadInitData using Java 11.0.14.1 on DESKTOP-V2DU6JQ with PID 7944 (started by Angelo_Calvo in C:\Users\Angelo_Calvo\Documents\GitHub\backend-app-bravo\backend-app-bravo)
+2022-04-18 22:40:26.314  INFO 7944 --- [    Test worker] backend.workshop.LoadInitData            : The following 1 profile is active: "default"
+2022-04-18 22:40:27.053  INFO 7944 --- [    Test worker] .s.d.r.c.RepositoryConfigurationDelegate : Bootstrapping Spring Data JPA repositories in DEFAULT mode.
+2022-04-18 22:40:27.131  INFO 7944 --- [    Test worker] .s.d.r.c.RepositoryConfigurationDelegate : Finished Spring Data repository scanning in 69 ms. Found 8 JPA repository interfaces.
+2022-04-18 22:40:27.791  INFO 7944 --- [    Test worker] o.hibernate.jpa.internal.util.LogHelper  : HHH000204: Processing PersistenceUnitInfo [name: default]
+2022-04-18 22:40:27.870  INFO 7944 --- [    Test worker] org.hibernate.Version                    : HHH000412: Hibernate ORM core version 5.6.7.Final
+2022-04-18 22:40:28.118  INFO 7944 --- [    Test worker] o.hibernate.annotations.common.Version   : HCANN000001: Hibernate Commons Annotations {5.1.2.Final}
+2022-04-18 22:40:28.254  INFO 7944 --- [    Test worker] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Starting...
+2022-04-18 22:40:28.464  INFO 7944 --- [    Test worker] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Start completed.
+2022-04-18 22:40:28.486  INFO 7944 --- [    Test worker] org.hibernate.dialect.Dialect            : HHH000400: Using dialect: org.hibernate.dialect.PostgreSQLDialect
+Hibernate: alter table report drop constraint FKqarlq4giti1m00opijlrn8ch0
+Hibernate: alter table report drop constraint FKn9krnhmsnlqxvtdomtwaeka1b
+Hibernate: alter table report drop constraint FKbhx4915b5kpmovy0hvx2o1xv
+Hibernate: alter table role_privilege drop constraint FKdkwbrwb5r8h74m1v7dqmhp99c
+Hibernate: alter table role_privilege drop constraint FKsykrtrdngu5iexmbti7lu9xa
+Hibernate: alter table service drop constraint FKfo23srckwmqcrg06njhki1ojv
+Hibernate: alter table technician drop constraint FKnxerfu3dpwim5li2bcfi3xsnr
+Hibernate: alter table user_role drop constraint FKa68196081fvovjhkek5m97n3y
+Hibernate: alter table user_role drop constraint FKj345gk1bovqvfame88rcx7yyx
+Hibernate: alter table vehicle drop constraint FK4uoikjk29k1w6tdx2ksc6jv3o
+Hibernate: drop table if exists client cascade
+Hibernate: drop table if exists privilege cascade
+Hibernate: drop table if exists report cascade
+Hibernate: drop table if exists role cascade
+Hibernate: drop table if exists role_privilege cascade
+Hibernate: drop table if exists service cascade
+Hibernate: drop table if exists technician cascade
+Hibernate: drop table if exists user_role cascade
+Hibernate: drop table if exists users cascade
+Hibernate: drop table if exists vehicle cascade
+Hibernate: drop sequence if exists hibernate_sequence
+Hibernate: create sequence hibernate_sequence start 1 increment 1
+Hibernate: create table client (id int8 not null, email varchar(255), name varchar(255), telephone int4 not null, primary key (id))
+Hibernate: create table privilege (id int8 not null, name varchar(255), primary key (id))
+Hibernate: create table report (id int8 not null, creation_date date, description varchar(255), client_id int8 not null, technician_id int8 not null, vehicle_id int8 not null, primary key (id))
+Hibernate: create table role (id int8 not null, name varchar(255), primary key (id))
+Hibernate: create table role_privilege (role_id int8 not null, privilege_id int8 not null, primary key (role_id, privilege_id))
+Hibernate: create table service (id int4 not null, observations varchar(255), state int4, services_list_id int8, primary key (id))
+Hibernate: create table technician (id int8 not null, user_id int8, primary key (id))
+Hibernate: create table user_role (user_id int8 not null, role_id int8 not null, primary key (user_id, role_id))
+Hibernate: create table users (id int8 not null, create_date timestamp, email varchar(255), enabled boolean, first_name varchar(255), last_name varchar(255), password varchar(255), token_expired boolean, primary key (id))
+Hibernate: create table vehicle (id int8 not null, brand varchar(255), motor_serial varchar(255), motor_type varchar(255), plate_number varchar(255), vehicle_class varchar(255), vin_number varchar(255), vehicles_list_id int8, primary key (id))
+Hibernate: alter table report add constraint FKqarlq4giti1m00opijlrn8ch0 foreign key (client_id) references client
+Hibernate: alter table report add constraint FKn9krnhmsnlqxvtdomtwaeka1b foreign key (technician_id) references technician
+Hibernate: alter table report add constraint FKbhx4915b5kpmovy0hvx2o1xv foreign key (vehicle_id) references vehicle
+Hibernate: alter table role_privilege add constraint FKdkwbrwb5r8h74m1v7dqmhp99c foreign key (privilege_id) references privilege
+Hibernate: alter table role_privilege add constraint FKsykrtrdngu5iexmbti7lu9xa foreign key (role_id) references role
+Hibernate: alter table service add constraint FKfo23srckwmqcrg06njhki1ojv foreign key (services_list_id) references report
+Hibernate: alter table technician add constraint FKnxerfu3dpwim5li2bcfi3xsnr foreign key (user_id) references users
+Hibernate: alter table user_role add constraint FKa68196081fvovjhkek5m97n3y foreign key (role_id) references role
+Hibernate: alter table user_role add constraint FKj345gk1bovqvfame88rcx7yyx foreign key (user_id) references users
+Hibernate: alter table vehicle add constraint FK4uoikjk29k1w6tdx2ksc6jv3o foreign key (vehicles_list_id) references client
+2022-04-18 22:40:29.198  INFO 7944 --- [    Test worker] o.h.e.t.j.p.i.JtaPlatformInitiator       : HHH000490: Using JtaPlatform implementation: [org.hibernate.engine.transaction.jta.platform.internal.NoJtaPlatform]
+2022-04-18 22:40:29.207  INFO 7944 --- [    Test worker] j.LocalContainerEntityManagerFactoryBean : Initialized JPA EntityManagerFactory for persistence unit 'default'
+2022-04-18 22:40:29.435  WARN 7944 --- [    Test worker] JpaBaseConfiguration$JpaWebConfiguration : spring.jpa.open-in-view is enabled by default. Therefore, database queries may be performed during view rendering. Explicitly configure spring.jpa.open-in-view to disable this warning
+2022-04-18 22:40:31.072  INFO 7944 --- [    Test worker] backend.workshop.LoadInitData            : Started LoadInitData in 5.086 seconds (JVM running for 6.353)
+Hibernate: select user0_.id as id1_8_, user0_.create_date as create_d2_8_, user0_.email as email3_8_, user0_.enabled as enabled4_8_, user0_.first_name as first_na5_8_, user0_.last_name as last_nam6_8_, user0_.password as password7_8_, user0_.token_expired as token_ex8_8_ from users user0_
+]]></system-out>
+  <system-err><![CDATA[]]></system-err>
+</testsuite>

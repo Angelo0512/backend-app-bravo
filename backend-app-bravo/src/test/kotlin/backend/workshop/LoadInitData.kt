@@ -7,18 +7,18 @@ import org.springframework.boot.test.context.SpringBootTest
 import org.springframework.test.context.jdbc.Sql
 
 @SpringBootTest
-@Sql(/*"/import-users.sql", "/import-priorities.sql", "/import-status.sql", "/import-tasks.sql", "/import-reminders.sql"*/)
+@Sql("/import-users.sql")
 /**
  * This class will load the initial data into the database
  */
 class LoadInitData (
-    //@Autowired
-    //val taskRepository: TaskRepository,
+    @Autowired
+    val userRepository: UserRepository,
 ) {
 
     @Test
-    fun testTaskFindAll() {
-        //val taskList: List<Task> = taskRepository.findAll()
-        //Assertions.assertTrue(taskList.size == 2)
+    fun testUserFindAll() {
+        val userList: List<User> = userRepository.findAll()
+        Assertions.assertTrue(userList.size == 1)
     }
 }
