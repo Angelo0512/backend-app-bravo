@@ -20,3 +20,23 @@ VALUES (2, '2020-04-18 22:26:00.000000', 'jane@test.com', true, 'Jane', 'Doe', '
 
 /** User-Role **/
 INSERT INTO public.user_role (user_id, role_id) VALUES (1, 1);
+
+/** Vehicles **/
+INSERT INTO public.vehicle (id, brand,motor_serial, motor_type,plate_number,vehicle_class,vin_number)
+VALUES (1, 'Audi','A12BC','Motor electrico','A34589','Deportivo', '123');
+INSERT INTO public.vehicle (id, brand,motor_serial, motor_type,plate_number,vehicle_class,vin_number)
+VALUES (2, 'Toyota','A12BC','Motor diesel','A98543','Pickup', '124');
+
+/** Services **/
+INSERT INTO public.service (id, oberservations, state)
+VALUES (1, 'Cambio de aceite','ACTIVO');
+INSERT INTO public.service (id, oberservations, state)
+VALUES (2, 'Mantenimiento preventivo', 'COMPLETO');
+INSERT INTO public.service (id, oberservations, state)
+VALUES (3, 'Mantenimiento de neumaticos','ACTIVO');
+
+/** Clients **/
+INSERT INTO public.service (id, ,email, name, telephone)
+VALUES (1, 'jane@test.com','Jane Doe', 61234567);
+INSERT INTO public.service (id, ,email, name, telephone)
+VALUES (2, 'bruce@test.com','Bruce Doe', 62234566);
