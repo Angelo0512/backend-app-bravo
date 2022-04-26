@@ -37,9 +37,9 @@ data class Vehicle(
     @Column(name = "motor_serial")
     var motorSerial: String,
     var brand: String,
-    @ManyToOne
+    /*@ManyToOne
     @JoinColumn(referencedColumnName = "id", nullable = false)
-    var client: Client,
+    var client: Client,*/
 ) {
     override fun equals(other: Any?): Boolean {
         if (this === other) return true
@@ -57,7 +57,7 @@ data class Vehicle(
     override fun toString(): String {
         return "Vehicle(id=$id, plate Number='$plateNumber', vin number='$vinNumber', " +
                 "motor type='$motorType', vehicle class='$vehicleClass', motor serial='$motorSerial'," +
-                " brand='$brand', client id='$client')"
+                " brand='$brand')"
     }
 }
 
@@ -70,6 +70,13 @@ data class Client(
     var name: String,
     var email: String,
     var telephone: Int,
+    @ManyToMany
+    @JoinTable(
+        name = "client_vehicle",
+        joinColumns = [JoinColumn(name = "client_id", referencedColumnName = "id")],
+        inverseJoinColumns = [JoinColumn(name = "vehicle_id", referencedColumnName = "id")]
+    )
+    var vehiclesList: List<Vehicle>,
 ) {
     override fun equals(other: Any?): Boolean {
         if (this === other) return true
@@ -85,7 +92,7 @@ data class Client(
     }
 
     override fun toString(): String {
-        return "Client(id=$id, name='$name', email='$email', telephone=$telephone)"
+        return "Client(id=$id, name='$name', email='$email', telephone=$telephone, vehicleList=$vehiclesList)"
     }
 }
 

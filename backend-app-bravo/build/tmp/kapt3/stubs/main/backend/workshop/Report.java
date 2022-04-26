@@ -17,8 +17,8 @@ public final class Report {
     @org.jetbrains.annotations.NotNull()
     private java.lang.String description;
     @org.jetbrains.annotations.NotNull()
-    @javax.persistence.JoinColumn(referencedColumnName = "id")
-    @javax.persistence.OneToMany(cascade = {javax.persistence.CascadeType.ALL}, fetch = javax.persistence.FetchType.LAZY)
+    @javax.persistence.JoinTable(name = "report_services", joinColumns = {@javax.persistence.JoinColumn(referencedColumnName = "id", name = "report_id")}, inverseJoinColumns = {@javax.persistence.JoinColumn(referencedColumnName = "id", name = "service_id")})
+    @javax.persistence.ManyToMany()
     private java.util.List<backend.workshop.Service> servicesList;
     @org.jetbrains.annotations.NotNull()
     @javax.persistence.JoinColumn(referencedColumnName = "id", nullable = false)

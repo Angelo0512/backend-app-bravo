@@ -16,8 +16,8 @@ public final class Client {
     private java.lang.String email;
     private int telephone;
     @org.jetbrains.annotations.NotNull()
-    @javax.persistence.JoinColumn(referencedColumnName = "id")
-    @javax.persistence.OneToMany()
+    @javax.persistence.JoinTable(name = "client_vehicle", joinColumns = {@javax.persistence.JoinColumn(referencedColumnName = "id", name = "client_id")}, inverseJoinColumns = {@javax.persistence.JoinColumn(referencedColumnName = "id", name = "vehicle_id")})
+    @javax.persistence.ManyToMany()
     private java.util.List<backend.workshop.Vehicle> vehiclesList;
     
     @org.jetbrains.annotations.NotNull()
