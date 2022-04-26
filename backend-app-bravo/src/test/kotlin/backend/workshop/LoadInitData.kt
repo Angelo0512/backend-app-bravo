@@ -7,7 +7,7 @@ import org.springframework.boot.test.context.SpringBootTest
 import org.springframework.test.context.jdbc.Sql
 
 @SpringBootTest
-@Sql("/import-users.sql")
+@Sql("/import-database.sql")
 /**
  * This class will load the initial data into the database
  */
@@ -19,6 +19,6 @@ class LoadInitData (
     @Test
     fun testUserFindAll() {
         val userList: List<User> = userRepository.findAll()
-        Assertions.assertTrue(userList.size == 1)
+        Assertions.assertTrue(userList.size == 2)
     }
 }
