@@ -7,9 +7,6 @@
  * This file contains the required entities' data classes for workshop's app server.
  */
 
-// TODO : cambiar nombre de las tablas a minuscula
-// TODO : agregar @Column
-// TODO : link para tabla extension tabla usuario
 
 package backend.workshop
 
