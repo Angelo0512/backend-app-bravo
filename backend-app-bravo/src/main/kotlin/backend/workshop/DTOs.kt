@@ -73,5 +73,40 @@ data class ClientResult(
     var name:String,
     var email:String,
     var telephone:Int,
-    var vehicles:List<VehicleInput>,
+    var vehicles:List<VehicleResult>,
+)
+
+data class ServiceInput(
+    var id:Int? = null,
+    var observations:String? = null,
+    var state:Status? = null,
+)
+
+data class ServiceResult(
+    var id:Int,
+    var observations:String,
+    var state:Status,
+)
+
+data class technicianDetails(
+    var id:Long? = null,
+    var user:UserInput? = null,
+)
+
+data class ReportInput(
+    var id:Long? = null,
+    var creationDate:Date? = null,
+    var description:String? = null,
+    var services:List<ServiceInput>? = null,
+    var client:ClientInput? = null,
+    var vehicle:VehicleInput? = null,
+    var technician:technicianDetails? = null,
+)
+data class ReportResult(
+    var id:Long,
+    var creationDate:Date,
+    var description:String,
+    var services:List<ServiceResult>,
+    var client:ClientResult,
+    var vehicle:VehicleResult,
 )
