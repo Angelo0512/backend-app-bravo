@@ -20,6 +20,9 @@ repositories {
 }
 
 dependencies {
+    implementation ("org.mapstruct:mapstruct:1.5.0.RC1")
+    kapt("org.mapstruct:mapstruct-processor:1.5.0.RC1")
+    annotationProcessor ("org.mapstruct:mapstruct:1.5.0.RC1")
     testImplementation(kotlin("test"))
     implementation("org.springframework.boot:spring-boot-starter-data-jpa")
     implementation("org.springframework.boot:spring-boot-starter-web")
