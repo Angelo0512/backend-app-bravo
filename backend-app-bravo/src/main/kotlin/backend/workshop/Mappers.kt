@@ -41,6 +41,9 @@ interface UserMapper {
 }
 @Mapper(componentModel = "spring", unmappedTargetPolicy = ReportingPolicy.IGNORE)
 interface VehicleMapper {
+    fun VehicleSearchInputToVehicleList(
+        vehicleSearchInput: VehicleSearchInput,
+    ): List<VehicleResult>
     fun vehicleInputToVehicle(
         vehicleInput : VehicleInput,
     ) : Vehicle
