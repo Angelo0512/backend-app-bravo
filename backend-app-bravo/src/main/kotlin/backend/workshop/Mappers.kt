@@ -23,6 +23,21 @@ interface PrivilegeMapper {
 )
 interface UserMapper {
 
+    @Mapping(target = "createDate", defaultExpression = "java(new java.util.Date())")
+    fun userInputToUser(
+        userInput: UserInput,
+    ): User
+
+    fun userLoginInputToUser(
+    userLoginInput: UserLoginInput,
+    ): User
+
+    fun userToUserResult(
+        user: User,
+    ): UserResult
+
+    @BeanMapping(nullValuePropertyMappingStrategy = NullValuePropertyMappingStrategy.IGNORE)
+    fun userInputToUser(dto: UserInput, @MappingTarget user: User)
 }
 @Mapper(componentModel = "spring", unmappedTargetPolicy = ReportingPolicy.IGNORE)
 interface VehicleMapper {
