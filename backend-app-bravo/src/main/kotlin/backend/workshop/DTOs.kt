@@ -65,7 +65,7 @@ data class ClientInput(
     var name:String? = null,
     var email:String? = null,
     var telephone:Int? = null,
-    var vehicles:List<VehicleInput>? = null,
+    var vehiclesList:List<VehicleInput>? = null,
 )
 
 data class ClientResult(
@@ -73,7 +73,7 @@ data class ClientResult(
     var name:String,
     var email:String,
     var telephone:Int,
-    var vehicles:List<VehicleResult>,
+    var vehiclesList:List<VehicleResult>,
 )
 
 data class ServiceInput(
@@ -88,7 +88,7 @@ data class ServiceResult(
     var state:Status,
 )
 
-data class technicianDetails(
+data class TechnicianDetails(
     var id:Long? = null,
     var user:UserInput? = null,
 )
@@ -100,7 +100,7 @@ data class ReportInput(
     var services:List<ServiceInput>? = null,
     var client:ClientInput? = null,
     var vehicle:VehicleInput? = null,
-    var technician:technicianDetails? = null,
+    var technician:TechnicianDetails? = null,
 )
 data class ReportResult(
     var id:Long,
