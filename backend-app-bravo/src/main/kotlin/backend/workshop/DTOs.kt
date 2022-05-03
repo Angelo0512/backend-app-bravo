@@ -40,9 +40,7 @@ data class UserResult(
     var roles:List<RoleDetails>,
 )
 
-/*
-* This DTO uses vehicleResult as the output.
-* */
+
 data class VehicleSearchInput(
     var plateNumber:String?=null,
     var vinNumber: String?=null
