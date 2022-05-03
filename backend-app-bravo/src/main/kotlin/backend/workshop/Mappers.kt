@@ -64,11 +64,11 @@ interface ServiceMappers{
         serviceInput: ServiceInput,
     ): Service
 
-    fun clientToClientResult(
+    fun serviceToServiceResult(
         service: Service,
     ): ServiceResult
 
-    fun clientListToClientListResult(
+    fun serviceListToServiceListResult(
         serviceList: List<Service>,
     ):List<ServiceResult>
 
@@ -79,4 +79,27 @@ interface TechnicianMappers{
     fun technicianToTechnicianDetails(
         technician: Technician?,
     ): TechnicianDetails
+}
+
+@Mapper(
+    imports = [LocalDateTime::class],
+    componentModel = "spring", unmappedTargetPolicy = ReportingPolicy.IGNORE
+)
+interface ReportMappers{
+
+    @Mapping(target = "creationDate", defaultExpression = "java(new java.util.Date())")
+    fun reportInputToReport(
+        reportInput: ReportInput,
+    ) : Report
+
+    fun reportToReportResult(
+        report: Report,
+    ): ReportResult
+
+    fun reportListToReportListResult(
+        reportList : List<Report>,
+    ): List<ReportResult>
+
+    @BeanMapping(nullValuePropertyMappingStrategy = NullValuePropertyMappingStrategy.IGNORE)
+    fun reportInputToReport(dto: ReportInput, @MappingTarget report: Report)
 }
