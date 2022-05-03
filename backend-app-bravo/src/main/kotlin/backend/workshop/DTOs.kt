@@ -41,7 +41,7 @@ data class UserResult(
 )
 
 /*
-* This dTO uses vehicleResult as the output.
+* This DTO uses vehicleResult as the output.
 * */
 data class VehicleSearchInput(
     var plateNumber:String?=null,
@@ -50,21 +50,21 @@ data class VehicleSearchInput(
 
 data class VehicleInput(
     var id:Long? = null,
-    var plateNumbre:String? = null,
+    var plateNumber:String? = null,
     var vinNumber:String? = null,
     var brand:String? = null,
     var motorSerial:String? = null,
-    var vechicleClass:String? = null,
+    var vehicleClass:String? = null,
     var motorType:String? = null,
 )
 
 data class VehicleResult(
     var id:Long,
-    var plateNumbre:String,
+    var plateNumber:String,
     var vinNumber:String,
     var brand:String,
     var motorSerial:String,
-    var vechicleClass:String,
+    var vehicleClass:String,
     var motorType:String,
 )
 
