@@ -23,13 +23,12 @@ interface PrivilegeMapper {
 )
 interface UserMapper {
 
-    @Mapping(target = "createDate", defaultExpression = "java(new java.util.Date())")
     fun userInputToUser(
         userInput: UserInput,
     ): User
 
     fun userLoginInputToUser(
-    userLoginInput: UserLoginInput,
+        userLoginInput: UserLoginInput,
     ): User
 
     fun userToUserResult(
@@ -39,11 +38,12 @@ interface UserMapper {
     @BeanMapping(nullValuePropertyMappingStrategy = NullValuePropertyMappingStrategy.IGNORE)
     fun userInputToUser(dto: UserInput, @MappingTarget user: User)
 }
+
 @Mapper(componentModel = "spring", unmappedTargetPolicy = ReportingPolicy.IGNORE)
 interface VehicleMapper {
     fun vehicleInputToVehicle(
-        vehicleInput : VehicleInput,
-    ) : Vehicle
+        vehicleInput: VehicleInput,
+    ): Vehicle
 
     fun vehicleToVehicleResult(
         vehicle: Vehicle,
@@ -51,12 +51,14 @@ interface VehicleMapper {
 
     fun vehicleListToVehicleListResult(
         vehicleList: List<Vehicle>,
-    ):List<VehicleResult>
+    ): List<VehicleResult>
+
     fun vehicleSearchInputToVehicle(
         vehicleSearchInput: VehicleSearchInput,
     ): Vehicle
+
     @BeanMapping(nullValuePropertyMappingStrategy = NullValuePropertyMappingStrategy.IGNORE)
-    fun vehicleInputToVehicle(dto: VehicleInput, @MappingTarget vehicle: Vehicle )
+    fun vehicleInputToVehicle(dto: VehicleInput, @MappingTarget vehicle: Vehicle)
 }
 
 @Mapper(componentModel = "spring", unmappedTargetPolicy = ReportingPolicy.IGNORE)
@@ -71,12 +73,12 @@ interface ClientMapper {
 
     fun clientListToClientListResult(
         clientList: List<Client>,
-    ):List<ClientResult>
+    ): List<ClientResult>
 
 }
 
 @Mapper(componentModel = "spring", unmappedTargetPolicy = ReportingPolicy.IGNORE)
-interface ServiceMappers{
+interface ServiceMappers {
     fun serviceInputToService(
         serviceInput: ServiceInput,
     ): Service
@@ -87,12 +89,12 @@ interface ServiceMappers{
 
     fun serviceListToServiceListResult(
         serviceList: List<Service>,
-    ):List<ServiceResult>
+    ): List<ServiceResult>
 
 }
 
 @Mapper(componentModel = "spring", unmappedTargetPolicy = ReportingPolicy.IGNORE)
-interface TechnicianMappers{
+interface TechnicianMappers {
     fun technicianToTechnicianDetails(
         technician: Technician?,
     ): TechnicianDetails
@@ -102,19 +104,19 @@ interface TechnicianMappers{
     imports = [LocalDateTime::class],
     componentModel = "spring", unmappedTargetPolicy = ReportingPolicy.IGNORE
 )
-interface ReportMappers{
+interface ReportMappers {
 
     @Mapping(target = "creationDate", defaultExpression = "java(new java.util.Date())")
     fun reportInputToReport(
         reportInput: ReportInput,
-    ) : Report
+    ): Report
 
     fun reportToReportResult(
         report: Report,
     ): ReportResult
 
     fun reportListToReportListResult(
-        reportList : List<Report>,
+        reportList: List<Report>,
     ): List<ReportResult>
 
     @BeanMapping(nullValuePropertyMappingStrategy = NullValuePropertyMappingStrategy.IGNORE)
