@@ -10,8 +10,8 @@ import org.springframework.stereotype.Component;
 
 @Generated(
     value = "org.mapstruct.ap.MappingProcessor",
-    date = "2022-05-05T13:27:25-0600",
-    comments = "version: 1.5.0.RC1, compiler: IncrementalProcessingEnvironment from kotlin-annotation-processing-gradle-1.6.10.jar, environment: Java 11.0.14.1 (Amazon.com Inc.)"
+    date = "2022-05-05T14:01:24-0600",
+    comments = "version: 1.5.0.RC1, compiler: IncrementalProcessingEnvironment from kotlin-annotation-processing-gradle-1.6.10.jar, environment: Java 11.0.15 (Amazon.com Inc.)"
 )
 @Component
 public class ReportMappersImpl implements ReportMappers {
@@ -37,7 +37,7 @@ public class ReportMappersImpl implements ReportMappers {
         }
         id = reportInput.getId();
         description = reportInput.getDescription();
-        client = clientInputToUser( reportInput.getClient() );
+        client = reportInput.getClient();
         vehicle = vehicleInputToVehicle( reportInput.getVehicle() );
         technician = technicianDetailsToUser( reportInput.getTechnician() );
 
@@ -57,7 +57,7 @@ public class ReportMappersImpl implements ReportMappers {
         long id = 0L;
         Date creationDate = null;
         String description = null;
-        ClientResult client = null;
+        User client = null;
         VehicleResult vehicle = null;
 
         if ( report.getId() != null ) {
@@ -65,7 +65,7 @@ public class ReportMappersImpl implements ReportMappers {
         }
         creationDate = report.getCreationDate();
         description = report.getDescription();
-        client = userToClientResult( report.getClient() );
+        client = report.getClient();
         vehicle = vehicleToVehicleResult( report.getVehicle() );
 
         List<ServiceResult> services = null;
@@ -105,10 +105,7 @@ public class ReportMappersImpl implements ReportMappers {
             report.setDescription( dto.getDescription() );
         }
         if ( dto.getClient() != null ) {
-            if ( report.getClient() == null ) {
-                report.setClient( new User() );
-            }
-            clientInputToUser1( dto.getClient(), report.getClient() );
+            report.setClient( dto.getClient() );
         }
         if ( dto.getVehicle() != null ) {
             if ( report.getVehicle() == null ) {
@@ -122,30 +119,6 @@ public class ReportMappersImpl implements ReportMappers {
             }
             technicianDetailsToUser1( dto.getTechnician(), report.getTechnician() );
         }
-    }
-
-    protected User clientInputToUser(ClientInput clientInput) {
-        if ( clientInput == null ) {
-            return null;
-        }
-
-        Long id = null;
-        String email = null;
-
-        id = clientInput.getId();
-        email = clientInput.getEmail();
-
-        String firstName = null;
-        String lastName = null;
-        String password = null;
-        Date createDate = null;
-        Boolean enabled = null;
-        Boolean tokenExpired = null;
-        Set<Role> roleList = null;
-
-        User user = new User( id, firstName, lastName, password, email, createDate, enabled, tokenExpired, roleList );
-
-        return user;
     }
 
     protected Vehicle vehicleInputToVehicle(VehicleInput vehicleInput) {
@@ -197,28 +170,6 @@ public class ReportMappersImpl implements ReportMappers {
         return user;
     }
 
-    protected ClientResult userToClientResult(User user) {
-        if ( user == null ) {
-            return null;
-        }
-
-        long id = 0L;
-        String email = null;
-
-        if ( user.getId() != null ) {
-            id = user.getId();
-        }
-        email = user.getEmail();
-
-        String name = null;
-        int telephone = 0;
-        List<VehicleResult> vehiclesList = null;
-
-        ClientResult clientResult = new ClientResult( id, name, email, telephone, vehiclesList );
-
-        return clientResult;
-    }
-
     protected VehicleResult vehicleToVehicleResult(Vehicle vehicle) {
         if ( vehicle == null ) {
             return null;
@@ -245,19 +196,6 @@ public class ReportMappersImpl implements ReportMappers {
         VehicleResult vehicleResult = new VehicleResult( id, plateNumber, vinNumber, brand, motorSerial, vehicleClass, motorType );
 
         return vehicleResult;
-    }
-
-    protected void clientInputToUser1(ClientInput clientInput, User mappingTarget) {
-        if ( clientInput == null ) {
-            return;
-        }
-
-        if ( clientInput.getId() != null ) {
-            mappingTarget.setId( clientInput.getId() );
-        }
-        if ( clientInput.getEmail() != null ) {
-            mappingTarget.setEmail( clientInput.getEmail() );
-        }
     }
 
     protected void vehicleInputToVehicle1(VehicleInput vehicleInput, Vehicle mappingTarget) {

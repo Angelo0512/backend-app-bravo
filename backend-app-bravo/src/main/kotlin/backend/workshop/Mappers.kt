@@ -64,16 +64,16 @@ interface VehicleMapper {
 @Mapper(componentModel = "spring", unmappedTargetPolicy = ReportingPolicy.IGNORE)
 interface ClientMapper {
     fun clientInputToClient(
-        clientInput: ClientInput,
+        userInput: UserInput,
     ): User
 
     fun clientToClientResult(
         client: User,
-    ): ClientResult
+    ): UserResult
 
     fun clientListToClientListResult(
         clientList: List<User>,
-    ): List<ClientResult>
+    ): List<UserResult>
 
 }
 

@@ -1,25 +1,37 @@
 
 
-/** Privilege**/
+/** Privilege **/
 INSERT INTO public.privilege (id, name) VALUES (1, 'TECHNICIAN_PRIVILEGE');
 INSERT INTO public.privilege (id, name) VALUES (2, 'CLIENT_PRIVILEGE');
 
-/** Role**/
+/** Role **/
 INSERT INTO public.role (id, name) VALUES (1, 'ROLE_TECH');
 INSERT INTO public.role (id, name) VALUES (2, 'ROLE_CLI');
 
-/** Role-Privilege**/
-INSERT INTO public.role_privilege (role_id, privilege_id) VALUES (2, 1);
+/** Role-Privilege **/
+INSERT INTO public.role_privilege (role_id, privilege_id) VALUES (1, 1);
 
 /** Users **/
 INSERT INTO public.users (id, create_date, email, enabled, first_name, last_name, password, token_expired)
-VALUES (3, '2020-04-18 22:26:00.000000', 'bruce@test.com', true, 'Bruce', 'Doe', 'pass$111', false);
+VALUES (1, '2020-04-18 22:26:00.000000', 'myemail@test.com', true, 'John', 'Doe', 'pass$123', false);
 INSERT INTO public.users (id, create_date, email, enabled, first_name, last_name, password, token_expired)
-VALUES (4, '2020-04-18 22:26:00.000000', 'jade@test.com', true, 'Jade', 'Doe', 'pass$444', false);
+VALUES (2, '2020-04-18 22:26:00.000000', 'jane@test.com', true, 'Jane', 'Doe', '111111', false);
+INSERT INTO public.users (id, create_date, email, enabled, first_name, last_name, password, token_expired)
+VALUES (3, '2020-04-18 22:26:00.000000', 'willian@test.com', true, 'Willian', 'Brown', '111111', false);
+INSERT INTO public.users (id, create_date, email, enabled, first_name, last_name, password, token_expired)
+VALUES (4, '2020-04-18 22:26:00.000000', 'bruce@test.com', true, 'Bruce', 'Rowland', '222222', false);
+INSERT INTO public.users (id, create_date, email, enabled, first_name, last_name, password, token_expired)
+VALUES (5, '2020-04-18 22:26:00.000000', 'dorothy@test.com', true, 'Dorothy', 'Rowland', '33333', false);
+INSERT INTO public.users (id, create_date, email, enabled, first_name, last_name, password, token_expired)
+VALUES (6, '2020-04-18 22:26:00.000000', 'dorothy@test.com', true, 'Emily', 'Smith', '55555', false);
 
 /** User-Role **/
+INSERT INTO public.user_role (user_id, role_id) VALUES (1, 1);
+INSERT INTO public.user_role (user_id, role_id) VALUES (2, 1);
 INSERT INTO public.user_role (user_id, role_id) VALUES (3, 1);
-
+INSERT INTO public.user_role (user_id, role_id) VALUES (4, 2);
+INSERT INTO public.user_role (user_id, role_id) VALUES (5, 2);
+INSERT INTO public.user_role (user_id, role_id) VALUES (6, 2);
 /** Vehicles
 INSERT INTO public.vehicle (id, brand,motor_serial, motor_type,plate_number,vehicle_class,vin_number)
 VALUES (1, 'Audi','A12BC','Motor electrico','A34589','Deportivo', '123');

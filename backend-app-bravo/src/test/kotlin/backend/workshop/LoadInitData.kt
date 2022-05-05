@@ -23,7 +23,7 @@ class LoadInitData (
         val userList: List<User> = userRepository.findAll()
 
         Assertions.assertAll("Import database test",
-            { Assertions.assertTrue(userList.size == 4) },
+            { Assertions.assertTrue(userList.size == 6) },
 
         )
     }
