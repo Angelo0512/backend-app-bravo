@@ -205,9 +205,10 @@ class AbstractServiceService(
 interface ReportService{
     fun findById(id: Long): ReportResult?
     fun findAll(): List<ReportResult>?
-    //fun findByClient(s: String): List<ReportResult>?
+    fun findByClientId(id: Long): List<ReportResult>
     //fun findByTechnician(s: String): List<ReportResult>?
     //fun findByVehicle(plateNumber: String): List<ReportResult>?
+
 }
 @Service
 class AbstractReportService(
@@ -224,5 +225,9 @@ class AbstractReportService(
     }
     override fun findAll(): List<ReportResult>? {
         return reportMapper.reportListToReportListResult(reportRepository.findAll())
+    }
+
+    override fun findByClientId(id: Long): List<ReportResult> {
+        return reportMapper.reportListToReportListResult(reportRepository.findByClientId(id))
     }
 }
