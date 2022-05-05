@@ -144,6 +144,7 @@ interface ServiceService{
     fun findById(id: Long): ServiceResult?
     fun findAll(): List<ServiceResult>?
     fun findByState(s: String): List<ServiceResult>?
+    fun create(serviceInput: ServiceInput): ServiceResult?
 
 }
 @Service
@@ -167,5 +168,36 @@ class AbstractServiceService(
             throw NoSuchElementException(String.format("The status with the value: %s was not found!", s))
         val serv: List<backend.workshop.Service> = serviceRepository.findByState(backend.workshop.Status.valueOf(s))
         return serviceMapper.serviceListToServiceListResult(serv)
+    }
+    override fun create(serviceInput: ServiceInput): ServiceResult?{
+        val service: backend.workshop.Service = serviceMapper.serviceInputToService(serviceInput)
+        return serviceMapper.serviceToServiceResult(
+            serviceRepository.save(service)
+        )
+    }
+}
+
+interface ReportService{
+    fun findById(id: Long): ReportResult?
+    fun findAll(): List<ReportResult>?
+    //fun findByClient(s: String): List<ReportResult>?
+    //fun findByTechnician(s: String): List<ReportResult>?
+    //fun findByVehicle(plateNumber: String): List<ReportResult>?
+}
+@Service
+class AbstractReportService(
+    @Autowired
+    val reportRepository: ReportRepository,
+
+    @Autowired
+    val reportMapper: ReportMappers,
+):ReportService{
+    override fun findById(id: Long): ReportResult? {
+        val report: Report = reportRepository.findById(id).orElse(null)
+            ?: throw NoSuchElementException(String.format("The Report with the id: %s was not found!", id))
+        return reportMapper.reportToReportResult(report)
+    }
+    override fun findAll(): List<ReportResult>? {
+        return reportMapper.reportListToReportListResult(reportRepository.findAll())
     }
 }
