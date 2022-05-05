@@ -59,9 +59,9 @@ VALUES (3, 'Mantenimiento de neumaticos', 1);
 
 /** reports**/
 INSERT INTO public.report (id, creation_date, description, client_id, technician_id, vehicle_id)
-VALUES (1, '2020-04-26 14:26:00.000000', 'Reparacion cambio de aceite y neumaticos', 1, 1, 2);
+VALUES (1, '2020-04-26 14:26:00.000000', 'Reparacion cambio de aceite y neumaticos', 1, 5, 2);
 INSERT INTO public.report (id, creation_date, description, client_id, technician_id, vehicle_id)
-VALUES (2, '2020-04-28 11:45:00.000000', 'Mantenimiento preventivo de vehiculo', 2, 1, 1);
+VALUES (2, '2020-04-28 11:45:00.000000', 'Mantenimiento preventivo de vehiculo', 2, 5, 1);
 
 /**report_services**/
 INSERT INTO public.report_services (report_id, service_id)

@@ -96,9 +96,9 @@ data class ReportInput(
     var creationDate: Date? = null,
     var description: String? = null,
     var services: List<ServiceInput>? = null,
-    var client: User? = null,
+    var client: UserBasic? = null,
     var vehicle: VehicleInput? = null,
-    var technician: TechnicianDetails? = null,
+    var technician: UserBasic? = null,
 )
 
 data class ReportResult(
@@ -108,4 +108,5 @@ data class ReportResult(
     var services: List<ServiceResult>?,
     var client: UserBasic?,
     var vehicle: VehicleResult?,
+    var technician: UserBasic?
 )
