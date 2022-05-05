@@ -26,8 +26,8 @@ interface VehicleService {
      * @param plate number of the Vehicle
      * @return the Vehicle found
      */
-    fun findByPlate(plate: String): VehicleResult?
-
+    fun findByPlateNumber(plateNumber: String): VehicleResult?
+    fun findByVinNumber(vinNumber: String): VehicleResult?
     /**
      * Find a specific Vehicle via Owner ID
      *
@@ -68,10 +68,19 @@ class AbstractVehicleService(
         return vehicleMapper.vehicleToVehicleResult(priority)
     }
 
-    override fun findByPlate(plate: String): VehicleResult? {
-        TODO("Not yet implemented")
+    @Throws(NoSuchElementException::class)
+    override fun findByPlateNumber(plateNumber: String): VehicleResult? {
+        val priority: Vehicle = vehicleRepository.findByPlateNumber(plateNumber).orElse(null)
+            ?: throw NoSuchElementException(String.format("The plate number %s was not found!", plateNumber))
+        return vehicleMapper.vehicleToVehicleResult(priority)
     }
 
+    @Throws(NoSuchElementException::class)
+    override fun findByVinNumber(vinNumber: String): VehicleResult? {
+        val priority: Vehicle = vehicleRepository.findByVinNumber(vinNumber).orElse(null)
+            ?: throw NoSuchElementException(String.format("The VIN Number %s was not found!", vinNumber))
+        return vehicleMapper.vehicleToVehicleResult(priority)
+    }
     override fun findByOwner(id: String): VehicleResult? {
         TODO("Not yet implemented")
     }
