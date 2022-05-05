@@ -8,6 +8,9 @@ interface RoleMapper {
     fun roleToRoleDetails(
         role: Role?,
     ): RoleDetails
+    fun roleListToRoleDetailsList(
+        roleList: Set<Role>?,
+    ): Set<RoleDetails>
 }
 
 @Mapper(componentModel = "spring", unmappedTargetPolicy = ReportingPolicy.IGNORE)
