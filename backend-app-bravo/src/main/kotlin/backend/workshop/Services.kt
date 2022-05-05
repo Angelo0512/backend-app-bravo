@@ -117,6 +117,7 @@ class AbstractTechnicianService(
     override fun create(userInput: UserInput): UserResult? {
         TODO("Not yet implemented")
     }
+}
     interface ClientService {
         /**
          * Find all the Vehicles
