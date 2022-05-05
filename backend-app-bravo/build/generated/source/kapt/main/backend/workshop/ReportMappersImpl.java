@@ -10,8 +10,8 @@ import org.springframework.stereotype.Component;
 
 @Generated(
     value = "org.mapstruct.ap.MappingProcessor",
-    date = "2022-05-05T11:34:20-0600",
-    comments = "version: 1.5.0.RC1, compiler: IncrementalProcessingEnvironment from kotlin-annotation-processing-gradle-1.6.10.jar, environment: Java 11.0.15 (Amazon.com Inc.)"
+    date = "2022-05-05T12:06:57-0600",
+    comments = "version: 1.5.0.RC1, compiler: IncrementalProcessingEnvironment from kotlin-annotation-processing-gradle-1.6.10.jar, environment: Java 11.0.14.1 (Amazon.com Inc.)"
 )
 @Component
 public class ReportMappersImpl implements ReportMappers {
@@ -25,9 +25,9 @@ public class ReportMappersImpl implements ReportMappers {
         Date creationDate = null;
         Long id = null;
         String description = null;
-        Client client = null;
+        User client = null;
         Vehicle vehicle = null;
-        Technician technician = null;
+        User technician = null;
 
         if ( reportInput.getCreationDate() != null ) {
             creationDate = reportInput.getCreationDate();
@@ -37,9 +37,9 @@ public class ReportMappersImpl implements ReportMappers {
         }
         id = reportInput.getId();
         description = reportInput.getDescription();
-        client = clientInputToClient( reportInput.getClient() );
+        client = clientInputToUser( reportInput.getClient() );
         vehicle = vehicleInputToVehicle( reportInput.getVehicle() );
-        technician = technicianDetailsToTechnician( reportInput.getTechnician() );
+        technician = technicianDetailsToUser( reportInput.getTechnician() );
 
         List<Service> servicesList = null;
 
@@ -65,7 +65,7 @@ public class ReportMappersImpl implements ReportMappers {
         }
         creationDate = report.getCreationDate();
         description = report.getDescription();
-        client = clientToClientResult( report.getClient() );
+        client = userToClientResult( report.getClient() );
         vehicle = vehicleToVehicleResult( report.getVehicle() );
 
         List<ServiceResult> services = null;
@@ -106,9 +106,9 @@ public class ReportMappersImpl implements ReportMappers {
         }
         if ( dto.getClient() != null ) {
             if ( report.getClient() == null ) {
-                report.setClient( new Client() );
+                report.setClient( new User() );
             }
-            clientInputToClient1( dto.getClient(), report.getClient() );
+            clientInputToUser1( dto.getClient(), report.getClient() );
         }
         if ( dto.getVehicle() != null ) {
             if ( report.getVehicle() == null ) {
@@ -118,10 +118,34 @@ public class ReportMappersImpl implements ReportMappers {
         }
         if ( dto.getTechnician() != null ) {
             if ( report.getTechnician() == null ) {
-                report.setTechnician( new Technician() );
+                report.setTechnician( new User() );
             }
-            technicianDetailsToTechnician1( dto.getTechnician(), report.getTechnician() );
+            technicianDetailsToUser1( dto.getTechnician(), report.getTechnician() );
         }
+    }
+
+    protected User clientInputToUser(ClientInput clientInput) {
+        if ( clientInput == null ) {
+            return null;
+        }
+
+        Long id = null;
+        String email = null;
+
+        id = clientInput.getId();
+        email = clientInput.getEmail();
+
+        String firstName = null;
+        String lastName = null;
+        String password = null;
+        Date createDate = null;
+        Boolean enabled = null;
+        Boolean tokenExpired = null;
+        Set<Role> roleList = null;
+
+        User user = new User( id, firstName, lastName, password, email, createDate, enabled, tokenExpired, roleList );
+
+        return user;
     }
 
     protected Vehicle vehicleInputToVehicle(VehicleInput vehicleInput) {
@@ -150,63 +174,21 @@ public class ReportMappersImpl implements ReportMappers {
         return vehicle;
     }
 
-    protected List<Vehicle> vehicleInputListToVehicleList(List<VehicleInput> list) {
-        if ( list == null ) {
-            return null;
-        }
-
-        List<Vehicle> list1 = new ArrayList<Vehicle>( list.size() );
-        for ( VehicleInput vehicleInput : list ) {
-            list1.add( vehicleInputToVehicle( vehicleInput ) );
-        }
-
-        return list1;
-    }
-
-    protected Client clientInputToClient(ClientInput clientInput) {
-        if ( clientInput == null ) {
+    protected User technicianDetailsToUser(TechnicianDetails technicianDetails) {
+        if ( technicianDetails == null ) {
             return null;
         }
 
         Long id = null;
-        String name = null;
-        String email = null;
-        int telephone = 0;
-        List<Vehicle> vehiclesList = null;
 
-        id = clientInput.getId();
-        name = clientInput.getName();
-        email = clientInput.getEmail();
-        if ( clientInput.getTelephone() != null ) {
-            telephone = clientInput.getTelephone();
-        }
-        vehiclesList = vehicleInputListToVehicleList( clientInput.getVehiclesList() );
+        id = technicianDetails.getId();
 
-        Client client = new Client( id, name, email, telephone, vehiclesList );
-
-        return client;
-    }
-
-    protected User userInputToUser(UserInput userInput) {
-        if ( userInput == null ) {
-            return null;
-        }
-
-        Long id = null;
         String firstName = null;
         String lastName = null;
         String password = null;
         String email = null;
-        Boolean enabled = null;
-
-        id = userInput.getId();
-        firstName = userInput.getFirstName();
-        lastName = userInput.getLastName();
-        password = userInput.getPassword();
-        email = userInput.getEmail();
-        enabled = userInput.getEnabled();
-
         Date createDate = null;
+        Boolean enabled = null;
         Boolean tokenExpired = null;
         Set<Role> roleList = null;
 
@@ -215,20 +197,26 @@ public class ReportMappersImpl implements ReportMappers {
         return user;
     }
 
-    protected Technician technicianDetailsToTechnician(TechnicianDetails technicianDetails) {
-        if ( technicianDetails == null ) {
+    protected ClientResult userToClientResult(User user) {
+        if ( user == null ) {
             return null;
         }
 
-        Long id = null;
-        User user = null;
+        long id = 0L;
+        String email = null;
 
-        id = technicianDetails.getId();
-        user = userInputToUser( technicianDetails.getUser() );
+        if ( user.getId() != null ) {
+            id = user.getId();
+        }
+        email = user.getEmail();
 
-        Technician technician = new Technician( id, user );
+        String name = null;
+        int telephone = 0;
+        List<VehicleResult> vehiclesList = null;
 
-        return technician;
+        ClientResult clientResult = new ClientResult( id, name, email, telephone, vehiclesList );
+
+        return clientResult;
     }
 
     protected VehicleResult vehicleToVehicleResult(Vehicle vehicle) {
@@ -259,44 +247,7 @@ public class ReportMappersImpl implements ReportMappers {
         return vehicleResult;
     }
 
-    protected List<VehicleResult> vehicleListToVehicleResultList(List<Vehicle> list) {
-        if ( list == null ) {
-            return null;
-        }
-
-        List<VehicleResult> list1 = new ArrayList<VehicleResult>( list.size() );
-        for ( Vehicle vehicle : list ) {
-            list1.add( vehicleToVehicleResult( vehicle ) );
-        }
-
-        return list1;
-    }
-
-    protected ClientResult clientToClientResult(Client client) {
-        if ( client == null ) {
-            return null;
-        }
-
-        long id = 0L;
-        String name = null;
-        String email = null;
-        int telephone = 0;
-        List<VehicleResult> vehiclesList = null;
-
-        if ( client.getId() != null ) {
-            id = client.getId();
-        }
-        name = client.getName();
-        email = client.getEmail();
-        telephone = client.getTelephone();
-        vehiclesList = vehicleListToVehicleResultList( client.getVehiclesList() );
-
-        ClientResult clientResult = new ClientResult( id, name, email, telephone, vehiclesList );
-
-        return clientResult;
-    }
-
-    protected void clientInputToClient1(ClientInput clientInput, Client mappingTarget) {
+    protected void clientInputToUser1(ClientInput clientInput, User mappingTarget) {
         if ( clientInput == null ) {
             return;
         }
@@ -304,27 +255,8 @@ public class ReportMappersImpl implements ReportMappers {
         if ( clientInput.getId() != null ) {
             mappingTarget.setId( clientInput.getId() );
         }
-        if ( clientInput.getName() != null ) {
-            mappingTarget.setName( clientInput.getName() );
-        }
         if ( clientInput.getEmail() != null ) {
             mappingTarget.setEmail( clientInput.getEmail() );
-        }
-        if ( clientInput.getTelephone() != null ) {
-            mappingTarget.setTelephone( clientInput.getTelephone() );
-        }
-        if ( mappingTarget.getVehiclesList() != null ) {
-            List<Vehicle> list = vehicleInputListToVehicleList( clientInput.getVehiclesList() );
-            if ( list != null ) {
-                mappingTarget.getVehiclesList().clear();
-                mappingTarget.getVehiclesList().addAll( list );
-            }
-        }
-        else {
-            List<Vehicle> list = vehicleInputListToVehicleList( clientInput.getVehiclesList() );
-            if ( list != null ) {
-                mappingTarget.setVehiclesList( list );
-            }
         }
     }
 
@@ -356,44 +288,13 @@ public class ReportMappersImpl implements ReportMappers {
         }
     }
 
-    protected void userInputToUser1(UserInput userInput, User mappingTarget) {
-        if ( userInput == null ) {
-            return;
-        }
-
-        if ( userInput.getId() != null ) {
-            mappingTarget.setId( userInput.getId() );
-        }
-        if ( userInput.getFirstName() != null ) {
-            mappingTarget.setFirstName( userInput.getFirstName() );
-        }
-        if ( userInput.getLastName() != null ) {
-            mappingTarget.setLastName( userInput.getLastName() );
-        }
-        if ( userInput.getPassword() != null ) {
-            mappingTarget.setPassword( userInput.getPassword() );
-        }
-        if ( userInput.getEmail() != null ) {
-            mappingTarget.setEmail( userInput.getEmail() );
-        }
-        if ( userInput.getEnabled() != null ) {
-            mappingTarget.setEnabled( userInput.getEnabled() );
-        }
-    }
-
-    protected void technicianDetailsToTechnician1(TechnicianDetails technicianDetails, Technician mappingTarget) {
+    protected void technicianDetailsToUser1(TechnicianDetails technicianDetails, User mappingTarget) {
         if ( technicianDetails == null ) {
             return;
         }
 
         if ( technicianDetails.getId() != null ) {
             mappingTarget.setId( technicianDetails.getId() );
-        }
-        if ( technicianDetails.getUser() != null ) {
-            if ( mappingTarget.getUser() == null ) {
-                mappingTarget.setUser( new User() );
-            }
-            userInputToUser1( technicianDetails.getUser(), mappingTarget.getUser() );
         }
     }
 }
