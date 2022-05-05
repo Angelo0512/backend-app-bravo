@@ -58,3 +58,16 @@ class ServiceController(private val serviceService: ServiceService) {
         return serviceService.create(serviceInput)
     }
 }
+
+@RestController
+@RequestMapping("\${url.reports}")
+class ReportController(private val reportService: ReportService) {
+
+    @GetMapping
+    @ResponseBody
+    fun findAll() = reportService.findAll()
+
+    @GetMapping("/id/{id}")
+    @ResponseBody
+    fun findById(@PathVariable id: Long) = reportService.findById(id)
+}

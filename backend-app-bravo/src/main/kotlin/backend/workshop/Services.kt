@@ -90,43 +90,24 @@ class AbstractVehicleService(
     }
 }
 
-interface ClientService {
-    /**
-     * Find all the Vehicles
-     *
-     * @return a list of Vehicles
-     */
+interface TechnicianService {
     fun findAll(): List<UserResult>?
-
-    /**
-     * Find a specific Vehicle via ID
-     *
-     * @param id of the Vehicle
-     * @return the Vehicle found
-     */
     fun findById(id: Long): UserResult?
-
-    /**
-     * Save and Flush a Vehicle entity in the database
-     *
-     * @param vehicleInput
-     * @return the Vehicle created
-     */
     fun create(userInput: UserInput): UserResult?
 }
 
 @Service
-class AbstractClientService(
+class AbstractTechnicianService(
     @Autowired
-    val clientRepository: ClientRepository,
+    val technicianRepository: TechnicianRepository,
 
     @Autowired
-    val clientMapper: ClientMapper,
+    val technicianMapper: TechnicianMapper,
 
-    ) : ClientService {
+    ) : TechnicianService {
 
     override fun findAll(): List<UserResult>? {
-        TODO("Not yet implemented")
+        return technicianMapper.technicianListToTechnicianListResult(technicianRepository.findAll())
     }
 
     override fun findById(id: Long): UserResult? {
@@ -136,7 +117,52 @@ class AbstractClientService(
     override fun create(userInput: UserInput): UserResult? {
         TODO("Not yet implemented")
     }
+    interface ClientService {
+        /**
+         * Find all the Vehicles
+         *
+         * @return a list of Vehicles
+         */
+        fun findAll(): List<UserResult>?
 
+        /**
+         * Find a specific Vehicle via ID
+         *
+         * @param id of the Vehicle
+         * @return the Vehicle found
+         */
+        fun findById(id: Long): UserResult?
+
+        /**
+         * Save and Flush a Vehicle entity in the database
+         *
+         * @param vehicleInput
+         * @return the Vehicle created
+         */
+        fun create(userInput: UserInput): UserResult?
+    }
+
+    @Service
+    class AbstractClientService(
+        @Autowired
+        val clientRepository: ClientRepository,
+
+        @Autowired
+        val clientMapper: ClientMapper,
+
+        ) : ClientService {
+
+        override fun findAll(): List<UserResult>? {
+            return clientMapper.clientListToClientListResult(clientRepository.findAll())
+        }
+
+        override fun findById(id: Long): UserResult? {
+            TODO("Not yet implemented")
+        }
+
+        override fun create(userInput: UserInput): UserResult? {
+            TODO("Not yet implemented")
+        }
 }
 interface ServiceService{
     fun findById(id: Long): ServiceResult?
