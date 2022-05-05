@@ -64,21 +64,21 @@ class AbstractVehicleService(
     @Throws(NoSuchElementException::class)
     override fun findById(id: Long): VehicleResult? {
         val priority: Vehicle = vehicleRepository.findById(id).orElse(null)
-            ?: throw NoSuchElementException(String.format("The Priority with the id: %s not found!", id))
+            ?: throw NoSuchElementException(String.format("The Priority with the id: %s was not found!", id))
         return vehicleMapper.vehicleToVehicleResult(priority)
     }
 
     @Throws(NoSuchElementException::class)
     override fun findByPlateNumber(plateNumber: String): VehicleResult? {
-        val priority: Vehicle = vehicleRepository.findByPlateNumber(plateNumber).orElse(null)
-            ?: throw NoSuchElementException(String.format("The plate number %s was not found!", plateNumber))
+        val priority: Vehicle = vehicleRepository.findByPlateNumber(plateNumber)
+            ?: throw NoSuchElementException(String.format("The Vehicle with the plate number: %s was not found!", plateNumber))
         return vehicleMapper.vehicleToVehicleResult(priority)
     }
 
     @Throws(NoSuchElementException::class)
     override fun findByVinNumber(vinNumber: String): VehicleResult? {
-        val priority: Vehicle = vehicleRepository.findByVinNumber(vinNumber).orElse(null)
-            ?: throw NoSuchElementException(String.format("The VIN Number %s was not found!", vinNumber))
+        val priority: Vehicle = vehicleRepository.findByVinNumber(vinNumber)
+            ?: throw NoSuchElementException(String.format("The Vehicle with the vin number: %s was not found!", vinNumber))
         return vehicleMapper.vehicleToVehicleResult(priority)
     }
     override fun findByOwner(id: String): VehicleResult? {
