@@ -25,4 +25,7 @@ interface TechnicianRepository: JpaRepository<Technician, Long>
 interface UserRepository: JpaRepository<User, Long>
 
 @Repository
-interface VehicleRepository: JpaRepository<Vehicle, Long>
+interface VehicleRepository: JpaRepository<Vehicle, Long>{
+    fun findByPlateNumber(@Param("plateNumber") plateNumber : String)
+    fun findByVinNumber(@Param("vinNumber") vinNumber : String)
+}
