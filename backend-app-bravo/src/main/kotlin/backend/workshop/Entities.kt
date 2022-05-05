@@ -58,40 +58,6 @@ data class Vehicle(
     }
 }
 
-@Entity
-@Table(name = "client")
-data class Client(
-    @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
-    var id: Long?,
-    var name: String,
-    var email: String,
-    var telephone: Int,
-    @ManyToMany
-    @JoinTable(
-        name = "client_vehicle",
-        joinColumns = [JoinColumn(name = "client_id", referencedColumnName = "id")],
-        inverseJoinColumns = [JoinColumn(name = "vehicle_id", referencedColumnName = "id")]
-    )
-    var vehiclesList: List<Vehicle>,
-) {
-    override fun equals(other: Any?): Boolean {
-        if (this === other) return true
-        if (other !is Client) return false
-
-        if (id != other.id) return false
-
-        return true
-    }
-
-    override fun hashCode(): Int {
-        return id?.hashCode() ?: 0
-    }
-
-    override fun toString(): String {
-        return "Client(id=$id, name='$name', email='$email', telephone=$telephone, vehicleList=$vehiclesList)"
-    }
-}
 
 enum class Status {
     ACTIVO, COMPLETO, INCOMPLETO, RETIRO_PENDIENTE
@@ -262,13 +228,13 @@ data class Report(
     var servicesList: List<Service>,
     @ManyToOne
     @JoinColumn(referencedColumnName = "id", nullable = false)
-    var client: Client,
+    var client: User,
     @ManyToOne
     @JoinColumn(referencedColumnName = "id", nullable = false)
     var vehicle: Vehicle,
     @ManyToOne
     @JoinColumn(referencedColumnName = "id", nullable = false)
-    var technician: Technician,
+    var technician: User,
     ) {
     override fun equals(other: Any?): Boolean {
         if (this === other) return true
@@ -285,30 +251,4 @@ data class Report(
         return "Report(id=$id, creationDate=$creationDate, description='$description', servicesList=$servicesList, client=$client, vehicle=$vehicle, technician=$technician)"
     }
 
-}
-
-@Entity
-@Table(name = "technician")
-class Technician (
-    @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
-    var id: Long?,
-    @OneToOne(fetch = FetchType.LAZY)
-    @JoinColumn(referencedColumnName = "id")
-    var user: User,
-) {
-    override fun equals(other: Any?): Boolean {
-        if (this === other) return true
-        if (other !is Technician) return false
-        if (id != other.id) return false
-        return true
-    }
-
-    override fun hashCode(): Int {
-        return id?.hashCode() ?: 0
-    }
-
-    override fun toString(): String {
-        return "Technician(id=$id, user=$user)"
-    }
 }
