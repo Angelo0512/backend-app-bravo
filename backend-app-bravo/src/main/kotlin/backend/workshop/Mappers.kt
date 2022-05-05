@@ -35,6 +35,10 @@ interface UserMapper {
         user: User,
     ): UserResult
 
+    fun userToUserBasic(
+        user: User,
+    ): UserBasic
+
     @BeanMapping(nullValuePropertyMappingStrategy = NullValuePropertyMappingStrategy.IGNORE)
     fun userInputToUser(dto: UserInput, @MappingTarget user: User)
 }

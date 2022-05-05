@@ -71,14 +71,24 @@ class AbstractVehicleService(
     @Throws(NoSuchElementException::class)
     override fun findByPlateNumber(plateNumber: String): VehicleResult? {
         val priority: Vehicle = vehicleRepository.findByPlateNumber(plateNumber)
-            ?: throw NoSuchElementException(String.format("The Vehicle with the plate number: %s was not found!", plateNumber))
+            ?: throw NoSuchElementException(
+                String.format(
+                    "The Vehicle with the plate number: %s was not found!",
+                    plateNumber
+                )
+            )
         return vehicleMapper.vehicleToVehicleResult(priority)
     }
 
     @Throws(NoSuchElementException::class)
     override fun findByVinNumber(vinNumber: String): VehicleResult? {
         val priority: Vehicle = vehicleRepository.findByVinNumber(vinNumber)
-            ?: throw NoSuchElementException(String.format("The Vehicle with the vin number: %s was not found!", vinNumber))
+            ?: throw NoSuchElementException(
+                String.format(
+                    "The Vehicle with the vin number: %s was not found!",
+                    vinNumber
+                )
+            )
         return vehicleMapper.vehicleToVehicleResult(priority)
     }
 
@@ -118,60 +128,63 @@ class AbstractTechnicianService(
         TODO("Not yet implemented")
     }
 }
-    interface ClientService {
-        /**
-         * Find all the Vehicles
-         *
-         * @return a list of Vehicles
-         */
-        fun findAll(): List<UserResult>?
 
-        /**
-         * Find a specific Vehicle via ID
-         *
-         * @param id of the Vehicle
-         * @return the Vehicle found
-         */
-        fun findById(id: Long): UserResult?
+interface ClientService {
+    /**
+     * Find all the Vehicles
+     *
+     * @return a list of Vehicles
+     */
+    fun findAll(): List<UserResult>?
 
-        /**
-         * Save and Flush a Vehicle entity in the database
-         *
-         * @param vehicleInput
-         * @return the Vehicle created
-         */
-        fun create(userInput: UserInput): UserResult?
+    /**
+     * Find a specific Vehicle via ID
+     *
+     * @param id of the Vehicle
+     * @return the Vehicle found
+     */
+    fun findById(id: Long): UserResult?
+
+    /**
+     * Save and Flush a Vehicle entity in the database
+     *
+     * @param vehicleInput
+     * @return the Vehicle created
+     */
+    fun create(userInput: UserInput): UserResult?
+}
+
+@Service
+class AbstractClientService(
+    @Autowired
+    val clientRepository: ClientRepository,
+
+    @Autowired
+    val clientMapper: ClientMapper,
+
+    ) : ClientService {
+
+    override fun findAll(): List<UserResult>? {
+        return clientMapper.clientListToClientListResult(clientRepository.findAll())
     }
 
-    @Service
-    class AbstractClientService(
-        @Autowired
-        val clientRepository: ClientRepository,
+    override fun findById(id: Long): UserResult? {
+        TODO("Not yet implemented")
+    }
 
-        @Autowired
-        val clientMapper: ClientMapper,
-
-        ) : ClientService {
-
-        override fun findAll(): List<UserResult>? {
-            return clientMapper.clientListToClientListResult(clientRepository.findAll())
-        }
-
-        override fun findById(id: Long): UserResult? {
-            TODO("Not yet implemented")
-        }
-
-        override fun create(userInput: UserInput): UserResult? {
-            TODO("Not yet implemented")
-        }
+    override fun create(userInput: UserInput): UserResult? {
+        TODO("Not yet implemented")
+    }
 }
-interface ServiceService{
+
+interface ServiceService {
     fun findById(id: Long): ServiceResult?
     fun findAll(): List<ServiceResult>?
     fun findByState(s: String): List<ServiceResult>?
     fun create(serviceInput: ServiceInput): ServiceResult?
 
 }
+
 @Service
 class AbstractServiceService(
     @Autowired
@@ -183,18 +196,21 @@ class AbstractServiceService(
     override fun findAll(): List<ServiceResult>? {
         return serviceMapper.serviceListToServiceListResult(serviceRepository.findAll())
     }
+
     override fun findById(id: Long): ServiceResult? {
         val serv: backend.workshop.Service = serviceRepository.findById(id).orElse(null)
             ?: throw NoSuchElementException(String.format("The service with the id: %s was not found!", id))
         return serviceMapper.serviceToServiceResult(serv)
     }
-    override fun findByState(s: String) : List<ServiceResult>?{
-        if(!backend.workshop.Status.values().contains(backend.workshop.Status.valueOf(s)))
+
+    override fun findByState(s: String): List<ServiceResult>? {
+        if (!backend.workshop.Status.values().contains(backend.workshop.Status.valueOf(s)))
             throw NoSuchElementException(String.format("The status with the value: %s was not found!", s))
         val serv: List<backend.workshop.Service> = serviceRepository.findByState(backend.workshop.Status.valueOf(s))
         return serviceMapper.serviceListToServiceListResult(serv)
     }
-    override fun create(serviceInput: ServiceInput): ServiceResult?{
+
+    override fun create(serviceInput: ServiceInput): ServiceResult? {
         val service: backend.workshop.Service = serviceMapper.serviceInputToService(serviceInput)
         return serviceMapper.serviceToServiceResult(
             serviceRepository.save(service)
@@ -202,13 +218,14 @@ class AbstractServiceService(
     }
 }
 
-interface ReportService{
+interface ReportService {
     fun findById(id: Long): ReportResult?
     fun findAll(): List<ReportResult>?
     //fun findByClient(s: String): List<ReportResult>?
     //fun findByTechnician(s: String): List<ReportResult>?
     //fun findByVehicle(plateNumber: String): List<ReportResult>?
 }
+
 @Service
 class AbstractReportService(
     @Autowired
@@ -216,12 +233,13 @@ class AbstractReportService(
 
     @Autowired
     val reportMapper: ReportMappers,
-):ReportService{
+) : ReportService {
     override fun findById(id: Long): ReportResult? {
         val report: Report = reportRepository.findById(id).orElse(null)
             ?: throw NoSuchElementException(String.format("The Report with the id: %s was not found!", id))
         return reportMapper.reportToReportResult(report)
     }
+
     override fun findAll(): List<ReportResult>? {
         return reportMapper.reportListToReportListResult(reportRepository.findAll())
     }
