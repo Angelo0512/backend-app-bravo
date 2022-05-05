@@ -14,7 +14,8 @@ interface PrivilegeRepository: JpaRepository<Privilege, Long>
 
 @Repository
 interface ReportRepository: JpaRepository<Report, Long>{
-    fun findByClientId (@Param("client_id") id: Long):  List<Report>
+    fun findByClientId (@Param("id") id: Long):  List<Report>
+    fun findByVehiclePlateNumber(@Param("plateNumber") plateNumber: String): List<Report>
 }
 
 @Repository

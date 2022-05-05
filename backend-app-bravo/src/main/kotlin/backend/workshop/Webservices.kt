@@ -74,4 +74,8 @@ class ReportController(private val reportService: ReportService) {
     @GetMapping("/client_id/{client_id}")
     @ResponseBody
     fun findByClientId(@PathVariable client_id: Long) = reportService.findByClientId(client_id)
+
+    @GetMapping("/vehicle_plate_number/{vehicle_plate_number}")
+    @ResponseBody
+    fun findByVehiclePlateNumber(@PathVariable vehicle_plate_number: String) = reportService.findByVehicleNumberPlate(vehicle_plate_number)
 }

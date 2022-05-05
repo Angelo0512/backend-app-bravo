@@ -222,6 +222,7 @@ interface ReportService {
     fun findById(id: Long): ReportResult?
     fun findAll(): List<ReportResult>?
     fun findByClientId(id: Long): List<ReportResult>
+    fun findByVehicleNumberPlate(numberPlate: String): List<ReportResult>
     //fun findByTechnician(s: String): List<ReportResult>?
     //fun findByVehicle(plateNumber: String): List<ReportResult>?
 
@@ -248,4 +249,9 @@ class AbstractReportService(
     override fun findByClientId(id: Long): List<ReportResult> {
         return reportMapper.reportListToReportListResult(reportRepository.findByClientId(id))
     }
+
+    override fun findByVehicleNumberPlate(numberPlate: String): List<ReportResult> {
+        return reportMapper.reportListToReportListResult(reportRepository.findByVehiclePlateNumber(numberPlate))
+    }
+
 }
