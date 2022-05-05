@@ -143,3 +143,32 @@ class AbstractClientService(
     }
 
 }
+interface ServiceService{
+    fun findById(id: Long): ServiceResult?
+    fun findAll(): List<ServiceResult>?
+    fun findByState(s: String): List<ServiceResult>?
+
+}
+@Service
+class AbstractServiceService(
+    @Autowired
+    val serviceRepository: ServiceRepository,
+
+    @Autowired
+    val serviceMapper: ServiceMapper,
+) : ServiceService {
+    override fun findAll(): List<ServiceResult>? {
+        return serviceMapper.serviceListToServiceListResult(serviceRepository.findAll())
+    }
+    override fun findById(id: Long): ServiceResult? {
+        val serv: backend.workshop.Service = serviceRepository.findById(id).orElse(null)
+            ?: throw NoSuchElementException(String.format("The service with the id: %s was not found!", id))
+        return serviceMapper.serviceToServiceResult(serv)
+    }
+    override fun findByState(s: String) : List<ServiceResult>?{
+        if(!backend.workshop.Status.values().contains(backend.workshop.Status.valueOf(s)))
+            throw NoSuchElementException(String.format("The status with the value: %s was not found!", s))
+        val serv: List<backend.workshop.Service> = serviceRepository.findByState(backend.workshop.Status.valueOf(s))
+        return serviceMapper.serviceListToServiceListResult(serv)
+    }
+}

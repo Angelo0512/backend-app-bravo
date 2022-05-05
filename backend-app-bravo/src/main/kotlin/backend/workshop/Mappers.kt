@@ -78,7 +78,7 @@ interface ClientMapper {
 }
 
 @Mapper(componentModel = "spring", unmappedTargetPolicy = ReportingPolicy.IGNORE)
-interface ServiceMappers {
+interface ServiceMapper {
     fun serviceInputToService(
         serviceInput: ServiceInput,
     ): Service

@@ -18,7 +18,9 @@ interface ReportRepository: JpaRepository<Report, Long>
 interface RoleRepository: JpaRepository<Role, Long>
 
 @Repository
-interface ServiceRepository: JpaRepository<Service, Long>
+interface ServiceRepository: JpaRepository<Service, Long>{
+    fun findByState(@Param("state") state: backend.workshop.Status): List<backend.workshop.Service>
+}
 
 @Repository
 interface TechnicianRepository: JpaRepository<Technician, Long>
