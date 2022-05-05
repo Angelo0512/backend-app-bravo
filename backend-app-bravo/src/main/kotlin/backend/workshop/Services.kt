@@ -27,14 +27,14 @@ interface VehicleService {
      * @return the Vehicle found
      */
     fun findByPlateNumber(plateNumber: String): VehicleResult?
-    fun findByVinNumber(vinNumber: String): VehicleResult?
+
     /**
-     * Find a specific Vehicle via Owner ID
+     * Find a specific Vehicle via Vin Number
      *
-     * @param id of the Owner
+     * @param vinNumber of the Vehicle
      * @return the Vehicle found
      */
-    fun findByOwner(id: String): VehicleResult?
+    fun findByVinNumber(vinNumber: String): VehicleResult?
 
     /**
      * Save and Flush a Vehicle entity in the database
@@ -80,9 +80,6 @@ class AbstractVehicleService(
         val priority: Vehicle = vehicleRepository.findByVinNumber(vinNumber)
             ?: throw NoSuchElementException(String.format("The Vehicle with the vin number: %s was not found!", vinNumber))
         return vehicleMapper.vehicleToVehicleResult(priority)
-    }
-    override fun findByOwner(id: String): VehicleResult? {
-        TODO("Not yet implemented")
     }
 
     override fun create(vehicleInput: VehicleInput): VehicleResult? {
