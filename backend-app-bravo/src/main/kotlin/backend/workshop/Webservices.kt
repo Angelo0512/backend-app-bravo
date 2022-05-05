@@ -35,3 +35,26 @@ class VehicleController(private val vehicleService: VehicleService) {
         return vehicleService.create(vehicleInput)
     }
 }
+
+@RestController
+@RequestMapping("\${url.services}")
+class ServiceController(private val serviceService: ServiceService) {
+
+    @GetMapping
+    @ResponseBody
+    fun findAll() = serviceService.findAll()
+
+    @GetMapping("/id/{id}")
+    @ResponseBody
+    fun findById(@PathVariable id: Long) = serviceService.findById(id)
+
+    @GetMapping("/state/{state}")
+    @ResponseBody
+    fun findByState(@PathVariable state: String) = serviceService.findByState(state)
+
+    @PostMapping(consumes = [MediaType.APPLICATION_JSON_VALUE], produces = [MediaType.APPLICATION_JSON_VALUE])
+    @ResponseBody
+    fun create(@RequestBody serviceInput: ServiceInput): ServiceResult? {
+        return serviceService.create(serviceInput)
+    }
+}
