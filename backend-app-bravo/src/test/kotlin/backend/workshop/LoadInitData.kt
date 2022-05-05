@@ -15,16 +15,29 @@ class LoadInitData (
     @Autowired
     val userRepository: UserRepository,
 
+    @Autowired
+    val vehicleRepository: VehicleRepository,
+
+    @Autowired
+    val serviceRepository: ServiceRepository,
+
+    @Autowired
+    val reportRepository: ReportRepository,
 
     ) {
 
     @Test
     fun testFindAll() {
         val userList: List<User> = userRepository.findAll()
+        val vehicleList: List<Vehicle> = vehicleRepository.findAll()
+        val serviceList: List<Service> = serviceRepository.findAll()
+        val reportList: List<Report> = reportRepository.findAll()
 
         Assertions.assertAll("Import database test",
             { Assertions.assertTrue(userList.size == 6) },
-
+            { Assertions.assertTrue(vehicleList.size == 2) },
+            { Assertions.assertTrue(serviceList.size == 3) },
+            { Assertions.assertTrue(reportList.size == 2) }
         )
     }
 }

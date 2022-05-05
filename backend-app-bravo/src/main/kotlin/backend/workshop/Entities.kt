@@ -68,7 +68,7 @@ enum class Status {
 data class Service(
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
-    var id: Int?,
+    var id: Long?,
     var observations: String,
     var state: Status,
 ) {
@@ -186,7 +186,7 @@ data class Privilege(
     @ManyToMany(mappedBy = "privilegeList", fetch = FetchType.LAZY)
     var roleList: Set<Role>,
 
-) {
+    ) {
     override fun equals(other: Any?): Boolean {
         if (this === other) return true
         if (other !is Privilege) return false
@@ -235,7 +235,7 @@ data class Report(
     @ManyToOne
     @JoinColumn(referencedColumnName = "id", nullable = false)
     var technician: User,
-    ) {
+) {
     override fun equals(other: Any?): Boolean {
         if (this === other) return true
         if (other !is Report) return false
