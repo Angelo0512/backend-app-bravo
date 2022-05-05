@@ -70,4 +70,8 @@ class ReportController(private val reportService: ReportService) {
     @GetMapping("/id/{id}")
     @ResponseBody
     fun findById(@PathVariable id: Long) = reportService.findById(id)
+
+    @GetMapping("/client_id/{client_id}")
+    @ResponseBody
+    fun findByClientId(@PathVariable client_id: Long) = reportService.findByClientId(client_id)
 }
