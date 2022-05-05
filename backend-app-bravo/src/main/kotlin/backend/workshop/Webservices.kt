@@ -78,4 +78,11 @@ class ReportController(private val reportService: ReportService) {
     @GetMapping("/plate/{plate}")
     @ResponseBody
     fun findByVehiclePlateNumber(@PathVariable plate: String) = reportService.findByVehicleNumberPlate(plate)
+
+    @PostMapping(consumes = [MediaType.APPLICATION_JSON_VALUE], produces = [MediaType.APPLICATION_JSON_VALUE])
+    @ResponseBody
+    fun create(@RequestBody reportInput: ReportInput): ReportResult? {
+        return reportService.create(reportInput)
+    }
+
 }

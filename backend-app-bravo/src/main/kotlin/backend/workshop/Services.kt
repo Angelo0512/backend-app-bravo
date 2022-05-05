@@ -225,7 +225,7 @@ interface ReportService {
     fun findByVehicleNumberPlate(numberPlate: String): List<ReportResult>
     //fun findByTechnician(s: String): List<ReportResult>?
     //fun findByVehicle(plateNumber: String): List<ReportResult>?
-
+    fun create(reportInput: ReportInput): ReportResult?
 }
 
 @Service
@@ -253,5 +253,10 @@ class AbstractReportService(
     override fun findByVehicleNumberPlate(numberPlate: String): List<ReportResult> {
         return reportMapper.reportListToReportListResult(reportRepository.findByVehiclePlateNumber(numberPlate))
     }
-
+    override fun create(reportInput: ReportInput): ReportResult? {
+        val report : backend.workshop.Report = reportMapper.reportInputToReport(reportInput)
+        return reportMapper.reportToReportResult(
+            reportRepository.save(report)
+        )
+    }
 }
