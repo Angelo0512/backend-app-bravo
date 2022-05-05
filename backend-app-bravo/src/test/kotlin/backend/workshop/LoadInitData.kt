@@ -36,9 +36,9 @@ class LoadInitData (
     fun testFindAll() {
         val userList: List<User> = userRepository.findAll()
         val vehicleList: List<Vehicle> = vehicleRepository.findAll()
-        val clientList: List<Client> = clientRepository.findAll()
+        val clientList: List<User> = clientRepository.findAll()
         val serviceList: List<Service> = serviceRepository.findAll()
-        val technicianList: List<Technician> = technicianRepository.findAll()
+        val technicianList: List<User> = technicianRepository.findAll()
         val reportList: List<Report> = reportRepository.findAll()
         Assertions.assertAll("Import database test",
             { Assertions.assertTrue(userList.size == 2) },

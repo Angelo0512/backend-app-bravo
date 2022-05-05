@@ -6,7 +6,7 @@ import org.springframework.data.jpa.repository.Query
 import org.springframework.data.repository.query.Param
 
 @Repository
-interface ClientRepository: JpaRepository<Client, Long>
+interface ClientRepository: JpaRepository<User, Long>
 
 @Repository
 interface PrivilegeRepository: JpaRepository<Privilege, Long>
@@ -23,7 +23,7 @@ interface ServiceRepository: JpaRepository<Service, Long>{
 }
 
 @Repository
-interface TechnicianRepository: JpaRepository<Technician, Long>
+interface TechnicianRepository: JpaRepository<User, Long>
 
 @Repository
 interface UserRepository: JpaRepository<User, Long>

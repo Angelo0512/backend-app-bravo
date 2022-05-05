@@ -65,14 +65,14 @@ interface VehicleMapper {
 interface ClientMapper {
     fun clientInputToClient(
         clientInput: ClientInput,
-    ): Client
+    ): User
 
     fun clientToClientResult(
-        client: Client,
+        client: User,
     ): ClientResult
 
     fun clientListToClientListResult(
-        clientList: List<Client>,
+        clientList: List<User>,
     ): List<ClientResult>
 
 }
@@ -96,7 +96,7 @@ interface ServiceMapper {
 @Mapper(componentModel = "spring", unmappedTargetPolicy = ReportingPolicy.IGNORE)
 interface TechnicianMappers {
     fun technicianToTechnicianDetails(
-        technician: Technician?,
+        technician: User?,
     ): TechnicianDetails
 }
 
