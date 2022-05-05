@@ -1,6 +1,5 @@
 package backend.workshop;
 
-import error.NonExistentClass;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
@@ -10,15 +9,15 @@ import org.springframework.stereotype.Component;
 
 @Generated(
     value = "org.mapstruct.ap.MappingProcessor",
-    date = "2022-05-05T14:01:23-0600",
-    comments = "version: 1.5.0.RC1, compiler: IncrementalProcessingEnvironment from kotlin-annotation-processing-gradle-1.6.10.jar, environment: Java 11.0.15 (Amazon.com Inc.)"
+    date = "2022-05-05T14:11:03-0600",
+    comments = "version: 1.5.0.RC1, compiler: IncrementalProcessingEnvironment from kotlin-annotation-processing-gradle-1.6.10.jar, environment: Java 11.0.14.1 (Amazon.com Inc.)"
 )
 @Component
 public class ClientMapperImpl implements ClientMapper {
 
     @Override
-    public User clientInputToClient(NonExistentClass clientInput) {
-        if ( clientInput == null ) {
+    public User clientInputToClient(UserInput userInput) {
+        if ( userInput == null ) {
             return null;
         }
 
@@ -27,8 +26,16 @@ public class ClientMapperImpl implements ClientMapper {
         String lastName = null;
         String password = null;
         String email = null;
-        Date createDate = null;
         Boolean enabled = null;
+
+        id = userInput.getId();
+        firstName = userInput.getFirstName();
+        lastName = userInput.getLastName();
+        password = userInput.getPassword();
+        email = userInput.getEmail();
+        enabled = userInput.getEnabled();
+
+        Date createDate = null;
         Boolean tokenExpired = null;
         Set<Role> roleList = null;
 
@@ -38,23 +45,45 @@ public class ClientMapperImpl implements ClientMapper {
     }
 
     @Override
-    public NonExistentClass clientToClientResult(User client) {
+    public UserResult clientToClientResult(User client) {
         if ( client == null ) {
             return null;
         }
 
-        NonExistentClass nonExistentClass = new NonExistentClass();
+        long id = 0L;
+        String firstName = null;
+        String lastName = null;
+        String email = null;
+        String password = null;
+        Boolean enabled = null;
+        Boolean tokenExpired = null;
+        Date createDate = null;
 
-        return nonExistentClass;
+        if ( client.getId() != null ) {
+            id = client.getId();
+        }
+        firstName = client.getFirstName();
+        lastName = client.getLastName();
+        email = client.getEmail();
+        password = client.getPassword();
+        enabled = client.getEnabled();
+        tokenExpired = client.getTokenExpired();
+        createDate = client.getCreateDate();
+
+        List<RoleDetails> roles = null;
+
+        UserResult userResult = new UserResult( id, firstName, lastName, email, password, enabled, tokenExpired, createDate, roles );
+
+        return userResult;
     }
 
     @Override
-    public List<NonExistentClass> clientListToClientListResult(List<User> clientList) {
+    public List<UserResult> clientListToClientListResult(List<User> clientList) {
         if ( clientList == null ) {
             return null;
         }
 
-        List<NonExistentClass> list = new ArrayList<NonExistentClass>( clientList.size() );
+        List<UserResult> list = new ArrayList<UserResult>( clientList.size() );
         for ( User user : clientList ) {
             list.add( clientToClientResult( user ) );
         }
