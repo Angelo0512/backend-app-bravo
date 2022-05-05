@@ -41,4 +41,6 @@ out/
 
 .idea
 .backend-app-bravo/build
+.backend-app-bravo/.gradle
+.backend-app-bravo/.idea
 

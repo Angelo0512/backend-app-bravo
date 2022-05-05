@@ -66,22 +66,6 @@ data class VehicleResult(
     var motorType:String,
 )
 
-data class ClientInput(
-    var id:Long? = null,
-    var name:String? = null,
-    var email:String? = null,
-    var telephone:Int? = null,
-    var vehiclesList:List<VehicleInput>? = null,
-)
-
-data class ClientResult(
-    var id:Long,
-    var name:String,
-    var email:String,
-    var telephone:Int,
-    var vehiclesList:List<VehicleResult>,
-)
-
 data class ServiceInput(
     var id:Int? = null,
     var observations:String? = null,
@@ -104,7 +88,7 @@ data class ReportInput(
     var creationDate:Date? = null,
     var description:String? = null,
     var services:List<ServiceInput>? = null,
-    var client:ClientInput? = null,
+    var client:User? = null,
     var vehicle:VehicleInput? = null,
     var technician:TechnicianDetails? = null,
 )
@@ -113,6 +97,6 @@ data class ReportResult(
     var creationDate:Date,
     var description:String,
     var services:List<ServiceResult>,
-    var client:ClientResult,
+    var client:User,
     var vehicle:VehicleResult,
 )

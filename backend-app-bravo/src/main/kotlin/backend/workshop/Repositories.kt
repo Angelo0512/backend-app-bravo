@@ -8,6 +8,7 @@ import org.springframework.data.repository.query.Param
 @Repository
 interface ClientRepository: JpaRepository<User, Long>
 
+
 @Repository
 interface PrivilegeRepository: JpaRepository<Privilege, Long>
 

@@ -96,7 +96,7 @@ interface ClientService {
      *
      * @return a list of Vehicles
      */
-    fun findAll(): List<ClientResult>?
+    fun findAll(): List<UserResult>?
 
     /**
      * Find a specific Vehicle via ID
@@ -104,7 +104,7 @@ interface ClientService {
      * @param id of the Vehicle
      * @return the Vehicle found
      */
-    fun findById(id: Long): ClientResult?
+    fun findById(id: Long): UserResult?
 
     /**
      * Save and Flush a Vehicle entity in the database
@@ -112,7 +112,7 @@ interface ClientService {
      * @param vehicleInput
      * @return the Vehicle created
      */
-    fun create(clientInput: ClientInput): ClientResult?
+    fun create(userInput: UserInput): UserResult?
 }
 
 @Service
@@ -125,17 +125,15 @@ class AbstractClientService(
 
     ) : ClientService {
 
-    override fun findAll(): List<ClientResult>? {
-        return clientMapper.clientListToClientListResult(
-            clientRepository.findAll()
-        )
-    }
-
-    override fun findById(id: Long): ClientResult? {
+    override fun findAll(): List<UserResult>? {
         TODO("Not yet implemented")
     }
 
-    override fun create(clientInput: ClientInput): ClientResult? {
+    override fun findById(id: Long): UserResult? {
+        TODO("Not yet implemented")
+    }
+
+    override fun create(userInput: UserInput): UserResult? {
         TODO("Not yet implemented")
     }
 
