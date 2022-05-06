@@ -20,6 +20,7 @@ repositories {
 }
 
 dependencies {
+    implementation("io.jsonwebtoken:jjwt:0.9.1")
     implementation ("org.mapstruct:mapstruct:1.5.0.RC1")
     kapt("org.mapstruct:mapstruct-processor:1.5.0.RC1")
     annotationProcessor ("org.mapstruct:mapstruct:1.5.0.RC1")

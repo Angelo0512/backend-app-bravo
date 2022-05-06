@@ -104,7 +104,7 @@ data class User(
     var email: String,
     @Column(name = "create_date")
     var createDate: Date,
-    var enabled: Boolean?,
+    var enabled: Boolean,
     @Column(name = "token_expired")
     var tokenExpired: Boolean?,
     // Entity Relationship
