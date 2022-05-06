@@ -289,7 +289,7 @@ class AppUserDetailsService(
             return org.springframework.security.core.userdetails.User(
                 "", "", true, true, true, true,
                 getAuthorities(Arrays.asList(
-                    roleRepository.findByName("ROLE_USER").get())))
+                    roleRepository.findByName("ROLE_TECH").get())))
         }
 
         userAuth = org.springframework.security.core.userdetails.User(
