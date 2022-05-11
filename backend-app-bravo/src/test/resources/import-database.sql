@@ -16,17 +16,17 @@ VALUES (1, 1);
 
 /** Users **/
 INSERT INTO public.users (id, create_date, email, enabled, first_name, last_name, password, token_expired)
-VALUES (1, '2020-04-18 22:26:00.000000', 'myemail@test.com', true, 'John', 'Doe', 'pass$123', false);
+VALUES (1, '2020-04-18 22:26:00.000000', 'myemail@test.com', true, 'John', 'Doe', '$2a$12$88XiNViQ1kzUr4NDKKm6juIvWc/CH22QcXfLeBV.sIAfeu4lyLJd6', false);
 INSERT INTO public.users (id, create_date, email, enabled, first_name, last_name, password, token_expired)
-VALUES (2, '2020-04-18 22:26:00.000000', 'jane@test.com', true, 'Jane', 'Doe', '111111', false);
+VALUES (2, '2020-04-18 22:26:00.000000', 'jane@test.com', true, 'Jane', 'Doe', '$2a$12$88XiNViQ1kzUr4NDKKm6juIvWc/CH22QcXfLeBV.sIAfeu4lyLJd6', false);
 INSERT INTO public.users (id, create_date, email, enabled, first_name, last_name, password, token_expired)
-VALUES (3, '2020-04-18 22:26:00.000000', 'willian@test.com', true, 'Willian', 'Brown', '111111', false);
+VALUES (3, '2020-04-18 22:26:00.000000', 'willian@test.com', true, 'Willian', 'Brown', '$2a$12$88XiNViQ1kzUr4NDKKm6juIvWc/CH22QcXfLeBV.sIAfeu4lyLJd6', false);
 INSERT INTO public.users (id, create_date, email, enabled, first_name, last_name, password, token_expired)
-VALUES (4, '2020-04-18 22:26:00.000000', 'bruce@test.com', true, 'Bruce', 'Rowland', '222222', false);
+VALUES (4, '2020-04-18 22:26:00.000000', 'bruce@test.com', true, 'Bruce', 'Rowland', '$2a$12$88XiNViQ1kzUr4NDKKm6juIvWc/CH22QcXfLeBV.sIAfeu4lyLJd6', false);
 INSERT INTO public.users (id, create_date, email, enabled, first_name, last_name, password, token_expired)
-VALUES (5, '2020-04-18 22:26:00.000000', 'dorothy@test.com', true, 'Dorothy', 'Rowland', '33333', false);
+VALUES (5, '2020-04-18 22:26:00.000000', 'dorothy@test.com', true, 'Dorothy', 'Rowland', '$2a$12$88XiNViQ1kzUr4NDKKm6juIvWc/CH22QcXfLeBV.sIAfeu4lyLJd6', false);
 INSERT INTO public.users (id, create_date, email, enabled, first_name, last_name, password, token_expired)
-VALUES (6, '2020-04-18 22:26:00.000000', 'dorothy@test.com', true, 'Emily', 'Smith', '55555', false);
+VALUES (6, '2020-04-18 22:26:00.000000', 'dorothy@test.com', true, 'Emily', 'Smith', '$2a$12$88XiNViQ1kzUr4NDKKm6juIvWc/CH22QcXfLeBV.sIAfeu4lyLJd6', false);
 
 /** User-Role **/
 INSERT INTO public.user_role (user_id, role_id)

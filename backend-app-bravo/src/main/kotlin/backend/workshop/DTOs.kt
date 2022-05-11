@@ -14,8 +14,8 @@ data class RoleDetails(
 )
 
 data class UserLoginInput(
-    var email: String="",
-    var password: String="",
+    var email: String ="",
+    var password: String ="",
 )
 
 data class UserInput(
