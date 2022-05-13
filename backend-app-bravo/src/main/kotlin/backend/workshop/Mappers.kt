@@ -141,3 +141,4 @@ interface ReportMappers {
     @BeanMapping(nullValuePropertyMappingStrategy = NullValuePropertyMappingStrategy.IGNORE)
     fun reportInputToReport(dto: ReportInput, @MappingTarget report: Report)
 }
+
