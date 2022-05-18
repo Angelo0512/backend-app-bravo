@@ -8,7 +8,6 @@ plugins {
     kotlin("plugin.spring") version "1.6.10"
     kotlin("plugin.jpa") version "1.6.10"
     kotlin("kapt") version "1.4.32"
-    application
 }
 
 group = "bravo.backend"
