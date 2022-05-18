@@ -43,5 +43,4 @@ out/
 /backend-app-bravo/build
 /backend-app-bravo/.gradle
 /backend-app-bravo/.idea
-/backend-app-bravo/src/main/resources/application-heroku.properties
 
