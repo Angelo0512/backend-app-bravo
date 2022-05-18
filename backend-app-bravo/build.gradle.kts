@@ -1,7 +1,7 @@
 import org.jetbrains.kotlin.gradle.tasks.KotlinCompile
 
 plugins {
-
+    application
     id("org.springframework.boot") version "2.6.5"
     id("io.spring.dependency-management") version "1.0.11.RELEASE"
     kotlin("jvm") version "1.6.10"
@@ -11,7 +11,7 @@ plugins {
     application
 }
 
-group = "una.esc-inf.moviles.bravo"
+group = "bravo.backend"
 version = "1.0"
 java.sourceCompatibility = JavaVersion.VERSION_11
 

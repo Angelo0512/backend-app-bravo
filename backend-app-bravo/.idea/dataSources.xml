@@ -17,5 +17,12 @@
       <jdbc-url>jdbc:postgresql://ec2-52-4-104-184.compute-1.amazonaws.com:5432/daknkrqg5m14n8</jdbc-url>
       <working-dir>$ProjectFileDir$</working-dir>
     </data-source>
+    <data-source source="LOCAL" name="AppBravo@localhost" uuid="6765380c-2ee7-4e10-a5f0-716606475978">
+      <driver-ref>postgresql</driver-ref>
+      <synchronize>true</synchronize>
+      <jdbc-driver>org.postgresql.Driver</jdbc-driver>
+      <jdbc-url>jdbc:postgresql://localhost:5432/AppBravo</jdbc-url>
+      <working-dir>$ProjectFileDir$</working-dir>
+    </data-source>
   </component>
 </project>
