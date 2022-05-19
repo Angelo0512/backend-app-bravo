@@ -282,19 +282,17 @@ class AppUserDetailsService(
 ) : UserDetailsService {
 
     @Throws(UsernameNotFoundException::class)
-    override fun loadUserByUsername(email: String): UserDetails {
-        var userAuth: org.springframework.security.core.userdetails.User? = null
-        val user: Optional<User> = userRepository.findByEmail(email)
-        if (user.isEmpty()) {
-            return org.springframework.security.core.userdetails.User(
+    override fun loadUserByUsername(username: String): UserDetails {
+        var userAuth: org.springframework.security.core.userdetails.User
+        val user: User = userRepository.findByEmail(username).orElse(null)
+            ?: return org.springframework.security.core.userdetails.User(
                 "", "", true, true, true, true,
                 getAuthorities(Arrays.asList(
-                    roleRepository.findByName("ROLE_TECH").get())))
-        }
+                    roleRepository.findByName("ROLE_USER").get())))
 
         userAuth = org.springframework.security.core.userdetails.User(
-            user.get().email, user.get().password, user.get().enabled, true, true,
-            true, getAuthorities(user.get().roleList!!.toMutableList()))
+            user.email, user.password, user.enabled, true, true,
+            true, getAuthorities(user.roleList!!.toMutableList()))
 
         return userAuth
     }
