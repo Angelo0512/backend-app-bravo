@@ -1,14 +1,13 @@
 import org.jetbrains.kotlin.gradle.tasks.KotlinCompile
 
 plugins {
-
+    application
     id("org.springframework.boot") version "2.6.5"
     id("io.spring.dependency-management") version "1.0.11.RELEASE"
     kotlin("jvm") version "1.6.10"
     kotlin("plugin.spring") version "1.6.10"
     kotlin("plugin.jpa") version "1.6.10"
     kotlin("kapt") version "1.4.32"
-    application
 }
 
 group = "una.esc-inf.moviles.bravo"
@@ -35,6 +34,7 @@ dependencies {
     annotationProcessor ("org.mapstruct:mapstruct:1.5.0.RC1")
     developmentOnly("org.springframework.boot:spring-boot-devtools")
     testImplementation("org.springframework.boot:spring-boot-starter-test")
+    testImplementation("org.springframework.security:spring-security-test")
     kapt("org.springframework.boot:spring-boot-configuration-processor")
 
     runtimeOnly("org.postgresql:postgresql")
