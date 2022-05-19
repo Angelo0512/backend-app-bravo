@@ -285,7 +285,7 @@ class AppUserDetailsService(
     override fun loadUserByUsername(email: String): UserDetails {
         var userAuth: org.springframework.security.core.userdetails.User? = null
         val user: Optional<User> = userRepository.findByEmail(email)
-        if (user.isEmpty) {
+        if (user.isEmpty()) {
             return org.springframework.security.core.userdetails.User(
                 "", "", true, true, true, true,
                 getAuthorities(Arrays.asList(
