@@ -2,8 +2,6 @@ package backend.workshop
 import com.fasterxml.jackson.databind.ObjectMapper
 import io.jsonwebtoken.Jwts
 import io.jsonwebtoken.SignatureAlgorithm
-import org.springframework.beans.factory.annotation.Autowired
-import org.springframework.beans.factory.annotation.Qualifier
 import org.springframework.beans.factory.annotation.Value
 import org.springframework.http.HttpHeaders
 import org.springframework.security.authentication.AuthenticationManager
@@ -12,11 +10,8 @@ import org.springframework.security.authentication.UsernamePasswordAuthenticatio
 import org.springframework.security.core.Authentication
 import org.springframework.security.core.AuthenticationException
 import org.springframework.security.core.context.SecurityContextHolder
-import org.springframework.security.web.AuthenticationEntryPoint
 import org.springframework.security.web.authentication.UsernamePasswordAuthenticationFilter
 import org.springframework.security.web.authentication.www.BasicAuthenticationFilter
-import org.springframework.stereotype.Component
-import org.springframework.web.servlet.HandlerExceptionResolver
 import java.io.IOException
 import java.util.*
 import javax.servlet.FilterChain
