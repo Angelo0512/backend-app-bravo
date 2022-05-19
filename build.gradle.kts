@@ -55,6 +55,8 @@ tasks.withType<Test> {
     useJUnitPlatform()
 }
 
+/*
 application {
-    mainClass.set("BravoAppKt")
+    mainClass.set("BravoApp.kt")
 }
+ */
