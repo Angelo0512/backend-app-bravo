@@ -292,7 +292,7 @@ class AppUserDetailsService(
 
         userAuth = org.springframework.security.core.userdetails.User(
             user.email, user.password, user.enabled, true, true,
-            true, getAuthorities(user.roleList.toMutableList()))
+            true, user.roleList?.let { getAuthorities(it.toMutableList()) })
 
         return userAuth
     }

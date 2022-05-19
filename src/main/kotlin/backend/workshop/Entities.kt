@@ -100,7 +100,7 @@ data class User(
     var firstName: String,
     @Column(name = "last_name")
     var lastName: String,
-    var password: String,
+    var password: String?,
     var email: String,
     @Column(name = "create_date")
     var createDate: Date,
@@ -114,7 +114,7 @@ data class User(
         joinColumns = [JoinColumn(name = "USER_ID", referencedColumnName = "id")],
         inverseJoinColumns = [JoinColumn(name = "ROLE_ID", referencedColumnName = "id")]
     )
-    var roleList: Set<Role>,
+    var roleList: Set<Role>?,
 
     ) {
     override fun equals(other: Any?): Boolean {
@@ -225,7 +225,7 @@ data class Report(
         joinColumns = [JoinColumn(name = "report_id", referencedColumnName = "id")],
         inverseJoinColumns = [JoinColumn(name = "service_id", referencedColumnName = "id")]
     )
-    var servicesList: List<Service>,
+    var servicesList: List<Service>?,
     @ManyToOne
     @JoinColumn(referencedColumnName = "id", nullable = false)
     var client: User,
