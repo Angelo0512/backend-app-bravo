@@ -29,6 +29,9 @@ interface ServiceRepository: JpaRepository<Service, Long>{
 }
 
 @Repository
+interface ServiceDataRepository: JpaRepository<ServiceData, Long>
+
+@Repository
 interface TechnicianRepository: JpaRepository<User, Long>
 
 @Repository

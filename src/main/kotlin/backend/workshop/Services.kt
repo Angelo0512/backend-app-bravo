@@ -326,3 +326,28 @@ class AppUserDetailsService(
     }
 
 }
+
+interface ServiceDataService {
+    fun findById(id: Long): ServiceDataResult?
+    fun findAll(): List<ServiceDataResult>?
+}
+
+@Service
+class AbstractServiceDataService(
+    @Autowired
+    val serviceDataRepository: ServiceDataRepository,
+
+    @Autowired
+    val serviceDataMapper: ServiceDataMapper,
+) : ServiceDataService {
+    override fun findAll(): List<ServiceDataResult>? {
+        return serviceDataMapper.serviceDataListToServiceDataResultList(serviceDataRepository.findAll())
+    }
+
+    override fun findById(id: Long): ServiceDataResult? {
+        val serv: backend.workshop.ServiceData = serviceDataRepository.findById(id).orElse(null)
+            ?: throw NoSuchElementException(String.format("The service with the id: %s was not found!", id))
+        return serviceDataMapper.serviceDataToServiceDataResult(serv)
+    }
+
+}

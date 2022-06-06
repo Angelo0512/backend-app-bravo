@@ -97,3 +97,13 @@ class ReportController(private val reportService: ReportService) {
     }
 
 }
+
+@RestController
+@RequestMapping("\${url.services.data}")
+class ServiceDataController(private val serviceDataService: ServiceDataService) {
+
+    @GetMapping
+    @ResponseBody
+    fun findAll() = serviceDataService.findAll()
+
+}

@@ -69,7 +69,8 @@ data class Service(
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     var id: Long?,
-    var observations: String,
+    var name: String,
+    var observations: String?,
     var state: Status,
 ) {
     override fun equals(other: Any?): Boolean {
@@ -86,7 +87,33 @@ data class Service(
     }
 
     override fun toString(): String {
-        return "Service(id=$id, observations='$observations', state='$state')"
+        return "Service(id=$id, name='$name', observations='$observations', state='$state')"
+    }
+}
+
+@Entity
+@Table(name = "service_data")
+data class ServiceData(
+    @Id
+    @GeneratedValue(strategy = GenerationType.AUTO)
+    var id: Long?,
+    var name: String,
+) {
+    override fun equals(other: Any?): Boolean {
+        if (this === other) return true
+        if (other !is Service) return false
+
+        if (id != other.id) return false
+
+        return true
+    }
+
+    override fun hashCode(): Int {
+        return id?.hashCode() ?: 0
+    }
+
+    override fun toString(): String {
+        return "Service(id=$id, name='$name')"
     }
 }
 

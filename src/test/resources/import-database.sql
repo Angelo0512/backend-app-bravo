@@ -47,15 +47,22 @@ VALUES (1, 'Audi', 'A12BC', 'Motor electrico', 'A34589', 'Deportivo', '123');
 INSERT INTO public.vehicle (id, brand, motor_serial, motor_type, plate_number, vehicle_class, vin_number)
 VALUES (2, 'Toyota', 'A12BC', 'Motor diesel', 'A98543', 'Pickup', '124');
 
+/** Services Data**/
+INSERT INTO public.service_data (id, name)
+VALUES (1, 'Cambio de aceite');
+INSERT INTO public.service_data (id, name)
+VALUES (2, 'Mantenimiento preventivo');
+INSERT INTO public.service_data (id, name)
+VALUES (3, 'Mantenimiento de neumaticos');
+
 
 /** Services**/
-INSERT INTO public.service (id, observations, state)
-VALUES (1, 'Cambio de aceite', 1);
-INSERT INTO public.service (id, observations, state)
-VALUES (2, 'Mantenimiento preventivo', 1);
-INSERT INTO public.service (id, observations, state)
-VALUES (3, 'Mantenimiento de neumaticos', 1);
-
+INSERT INTO public.service (id, name, observations, state)
+VALUES (1, 'Cambio de aceite', null, 1);
+INSERT INTO public.service (id, name, observations, state)
+VALUES (2, 'Mantenimiento preventivo', null, 1);
+INSERT INTO public.service (id, name, observations, state)
+VALUES (3, 'Mantenimiento de neumaticos', null, 1);
 
 /** reports**/
 INSERT INTO public.report (id, creation_date, description, client_id, technician_id, vehicle_id)

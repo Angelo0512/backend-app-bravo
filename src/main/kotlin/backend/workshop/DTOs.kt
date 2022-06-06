@@ -75,15 +75,22 @@ data class VehicleResult(
 )
 
 data class ServiceInput(
-    var id: Int? = null,
+    var id: Long? = null,
+    var name: String? = null,
     var observations: String? = null,
     var state: Status? = null,
 )
 
 data class ServiceResult(
-    var id: Int,
-    var observations: String,
+    var id: Long,
+    var name: String,
+    var observations: String?,
     var state: Status,
+)
+
+data class ServiceDataResult(
+    var id: Long,
+    var name: String,
 )
 
 data class TechnicianDetails(

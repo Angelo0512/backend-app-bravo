@@ -22,6 +22,9 @@ class LoadInitData (
     val serviceRepository: ServiceRepository,
 
     @Autowired
+    val serviceDataRepository: ServiceDataRepository,
+
+    @Autowired
     val reportRepository: ReportRepository,
 
     ) {
@@ -31,12 +34,14 @@ class LoadInitData (
         val userList: List<User> = userRepository.findAll()
         val vehicleList: List<Vehicle> = vehicleRepository.findAll()
         val serviceList: List<Service> = serviceRepository.findAll()
+        val serviceDataList: List<ServiceData> = serviceDataRepository.findAll()
         val reportList: List<Report> = reportRepository.findAll()
 
         Assertions.assertAll("Import database test",
             { Assertions.assertTrue(userList.size == 6) },
             { Assertions.assertTrue(vehicleList.size == 2) },
             { Assertions.assertTrue(serviceList.size == 3) },
+            { Assertions.assertTrue(serviceDataList.size == 3) },
             { Assertions.assertTrue(reportList.size == 2) }
         )
     }

@@ -102,6 +102,18 @@ interface ServiceMapper {
 }
 
 @Mapper(componentModel = "spring", unmappedTargetPolicy = ReportingPolicy.IGNORE)
+interface ServiceDataMapper {
+    fun serviceDataToServiceDataResult(
+        service: ServiceData,
+    ): ServiceDataResult
+
+    fun serviceDataListToServiceDataResultList(
+        serviceList: List<ServiceData>,
+    ): List<ServiceDataResult>
+
+}
+
+@Mapper(componentModel = "spring", unmappedTargetPolicy = ReportingPolicy.IGNORE)
 interface TechnicianMapper {
     fun technicianToTechnicianDetails(
         technician: User?,
