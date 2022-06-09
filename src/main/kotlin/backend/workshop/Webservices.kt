@@ -112,5 +112,7 @@ class ServiceDataController(private val serviceDataService: ServiceDataService) 
 @RestController
 @RequestMapping("\${url.clients}")
 class ClientController(private val clientService: ClientService) {
+    @GetMapping
+    @ResponseBody
     fun findAll() = clientService.findAll()
 }

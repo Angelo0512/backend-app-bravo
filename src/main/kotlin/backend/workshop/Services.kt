@@ -174,7 +174,14 @@ class AbstractClientService(
     ) : ClientService {
 
     override fun findAll(): List<UserResult>? {
-        return clientMapper.clientListToClientListResult(clientRepository.findAllByRoleListContains(Role(0,"ROLE_CLI", null)))
+        var resultList : MutableList<User> = ArrayList()
+        for(user in clientRepository.findAll()){
+            for (role in user.roleList!!){
+                if (role.name == "ROLE_CLI")
+                    resultList.add(user)
+            }
+        }
+        return clientMapper.clientListToClientListResult(resultList)
     }
 
     override fun findById(id: Long): UserResult? {
