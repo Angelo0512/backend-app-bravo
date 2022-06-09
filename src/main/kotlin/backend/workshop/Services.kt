@@ -174,7 +174,7 @@ class AbstractClientService(
     ) : ClientService {
 
     override fun findAll(): List<UserResult>? {
-        return clientMapper.clientListToClientListResult(clientRepository.findAll())
+        return clientMapper.clientListToClientListResult(clientRepository.findAllByRoleListContains(Role(0,"ROLE_CLI", null)))
     }
 
     override fun findById(id: Long): UserResult? {
@@ -308,7 +308,7 @@ class AppUserDetailsService(
         val collection: MutableList<Privilege> = ArrayList()
         if (roles != null) {
             for (role in roles) {
-                collection.addAll(role.privilegeList)
+                role.privilegeList?.let { collection.addAll(it) }
             }
         }
         for (item in collection) {

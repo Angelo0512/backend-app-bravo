@@ -8,6 +8,5 @@ ________  ________          _  ____     ___   ____
  MM     MM MM  \M\      d'    YM. `Mb d'   MM      MM
  MM     MM MM   \M\    ,MMMMMMMMb  YM,P    YM      M9
  MM    .M9 MM    \M\   d'      YM. `MM'     8b    d8
-_MMMMMMM9'_MM_    \M\_dM_     _dMM_ YP       YMMMM9   
-Powered by Spring Boot ${spring-boot.version}
+_MMMMMMM9'_MM_    \M\_dM_     _dMM_ YP       YMMMM9
 -------------------------------------------------------------

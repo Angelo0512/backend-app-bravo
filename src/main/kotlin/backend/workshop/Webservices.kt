@@ -107,3 +107,10 @@ class ServiceDataController(private val serviceDataService: ServiceDataService) 
     fun findAll() = serviceDataService.findAll()
 
 }
+
+
+@RestController
+@RequestMapping("\${url.clients}")
+class ClientController(private val clientService: ClientService) {
+    fun findAll() = clientService.findAll()
+}

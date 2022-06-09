@@ -6,7 +6,9 @@ import org.springframework.data.repository.query.Param
 import java.util.*
 
 @Repository
-interface ClientRepository: JpaRepository<User, Long>
+interface ClientRepository: JpaRepository<User, Long>{
+    fun findAllByRoleListContains(@Param("role") rol: Role): List<User>
+}
 
 
 @Repository
