@@ -112,7 +112,26 @@ class ServiceDataController(private val serviceDataService: ServiceDataService) 
 @RestController
 @RequestMapping("\${url.clients}")
 class ClientController(private val clientService: ClientService) {
-    @GetMapping
+    /*@GetMapping
     @ResponseBody
     fun findAll() = clientService.findAll()
+*/
+    @GetMapping
+    @ResponseBody
+    @Suppress("IMPLICIT_CAST_TO_ANY")
+    fun find(@RequestParam(required = false) param: Map<String, String>) =
+        when {
+            param.containsKey("id") -> {
+                param["id"]?.let { clientService.findById(it.toLong()) }
+            }
+            else -> {
+                clientService.findAll()
+            }
+        }
+    @PostMapping(consumes = [MediaType.APPLICATION_JSON_VALUE], produces = [MediaType.APPLICATION_JSON_VALUE])
+    @ResponseBody
+    fun create(@RequestBody clientInput: UserInput): UserResult? {
+        return clientService.create(clientInput)
+    }
+
 }

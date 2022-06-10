@@ -130,7 +130,7 @@ data class User(
     var password: String?,
     var email: String,
     @Column(name = "create_date")
-    var createDate: Date,
+    var createDate: Date?,
     var enabled: Boolean,
     @Column(name = "token_expired")
     var tokenExpired: Boolean?,

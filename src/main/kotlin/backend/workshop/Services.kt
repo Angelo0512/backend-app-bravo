@@ -8,6 +8,7 @@ import org.springframework.security.core.userdetails.UserDetailsService
 import org.springframework.security.core.userdetails.UsernameNotFoundException
 import org.springframework.stereotype.Service
 import org.springframework.transaction.annotation.Transactional
+import java.time.LocalDateTime
 import java.util.*
 import kotlin.NoSuchElementException
 import kotlin.collections.ArrayList
@@ -169,6 +170,9 @@ class AbstractClientService(
     val clientRepository: ClientRepository,
 
     @Autowired
+    val roleRepository: RoleRepository,
+
+    @Autowired
     val clientMapper: ClientMapper,
 
     ) : ClientService {
@@ -185,11 +189,16 @@ class AbstractClientService(
     }
 
     override fun findById(id: Long): UserResult? {
-        TODO("Not yet implemented")
+        return clientMapper.clientToClientResult(clientRepository.getById(id))
     }
 
     override fun create(userInput: UserInput): UserResult? {
-        TODO("Not yet implemented")
+        var user: User = clientMapper.clientInputToClient(userInput)
+        user.roleList = mutableSetOf(roleRepository.findByName("ROLE_CLI").get())
+        user.createDate = Date()
+        return clientMapper.clientToClientResult(
+            clientRepository.save(user)
+        )
     }
 }
 
