@@ -142,6 +142,7 @@ interface ReportMappers {
         reportInput: ReportInput,
     ): Report
 
+    @Mapping(source = "servicesList", target = "services")
     fun reportToReportResult(
         report: Report,
     ): ReportResult

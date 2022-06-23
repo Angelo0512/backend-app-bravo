@@ -112,7 +112,7 @@ data class ReportResult(
     var id: Long?,
     var creationDate: Date?,
     var description: String?,
-    var services: List<ServiceResult>?,
+    var services: List<Service>?,
     var client: UserBasic?,
     var vehicle: VehicleResult?,
     var technician: UserBasic?
