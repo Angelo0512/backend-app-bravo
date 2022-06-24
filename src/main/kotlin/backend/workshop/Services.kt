@@ -306,9 +306,11 @@ class AppUserDetailsService(
                 getAuthorities(Arrays.asList(
                     roleRepository.findByName("ROLE_USER").get())))
 
-        userAuth = org.springframework.security.core.userdetails.User(
-            user.email, user.password, user.enabled, true, true,
-            true, user.roleList?.let { getAuthorities(it.toMutableList()) })
+        userAuth = user.enabled?.let {
+            org.springframework.security.core.userdetails.User(
+                user.email, user.password, it, true, true,
+                true, user.roleList?.let { getAuthorities(it.toMutableList()) })
+        }!!
 
         return userAuth
     }

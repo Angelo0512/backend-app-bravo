@@ -24,16 +24,16 @@ data class Vehicle(
     @GeneratedValue(strategy = GenerationType.AUTO)
     var id: Long?,
     @Column(name = "plate_number")
-    var plateNumber: String,
+    var plateNumber: String?,
     @Column(name = "vin_number")
-    var vinNumber: String,
+    var vinNumber: String?,
     @Column(name = "motor_type")
-    var motorType: String,
+    var motorType: String?,
     @Column(name = "vehicle_class")
-    var vehicleClass: String,
+    var vehicleClass: String?,
     @Column(name = "motor_serial")
-    var motorSerial: String,
-    var brand: String,
+    var motorSerial: String?,
+    var brand: String?,
     /*@ManyToOne
     @JoinColumn(referencedColumnName = "id", nullable = false)
     var client: Client,*/
@@ -124,14 +124,14 @@ data class User(
     @GeneratedValue(strategy = GenerationType.AUTO)
     var id: Long? = null,
     @Column(name = "first_name")
-    var firstName: String,
+    var firstName: String?,
     @Column(name = "last_name")
-    var lastName: String,
+    var lastName: String?,
     var password: String?,
-    var email: String,
+    var email: String?,
     @Column(name = "create_date")
     var createDate: Date?,
-    var enabled: Boolean,
+    var enabled: Boolean?,
     @Column(name = "token_expired")
     var tokenExpired: Boolean?,
     // Entity Relationship

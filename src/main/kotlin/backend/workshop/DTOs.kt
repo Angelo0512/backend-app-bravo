@@ -65,13 +65,13 @@ data class VehicleInput(
 )
 
 data class VehicleResult(
-    var id: Long,
-    var plateNumber: String,
-    var vinNumber: String,
-    var brand: String,
-    var motorSerial: String,
-    var vehicleClass: String,
-    var motorType: String,
+    var id: Long?,
+    var plateNumber: String?,
+    var vinNumber: String?,
+    var brand: String?,
+    var motorSerial: String?,
+    var vehicleClass: String?,
+    var motorType: String?,
 )
 
 data class ServiceInput(
